@@ -1,0 +1,227 @@
+[
+{
+"symptom_id": "S01",
+"symptom": "月結要拖十天以上",
+"cause_id": "S01-C1",
+"cause": "費用單據與傳票靠人工轉入會計",
+"steps": "R2R-2,R2R-1",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S01",
+"symptom": "月結要拖十天以上",
+"cause_id": "S01-C2",
+"cause": "庫存與成本到月底才一次計算",
+"steps": "R2R-4,PTP-9",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S01",
+"symptom": "月結要拖十天以上",
+"cause_id": "S01-C3",
+"cause": "各子公司帳務系統不同，合併靠試算表",
+"steps": "R2R-5",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S02",
+"symptom": "帳上庫存和實際對不起來",
+"cause_id": "S02-C1",
+"cause": "先出貨後補單，出貨與扣帳不同步",
+"steps": "O2C-4,O2C-3",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S02",
+"symptom": "帳上庫存和實際對不起來",
+"cause_id": "S02-C2",
+"cause": "收貨沒有即時入帳",
+"steps": "P2P-4",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S02",
+"symptom": "帳上庫存和實際對不起來",
+"cause_id": "S02-C3",
+"cause": "工單發料與退料沒有回報",
+"steps": "PTP-5,PTP-9",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S03",
+"symptom": "業務離職，客戶就跟著走",
+"cause_id": "S03-C1",
+"cause": "客戶資料與往來紀錄存在業務個人手機或試算表",
+"steps": "O2C-1",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S04",
+"symptom": "同一個客戶在系統裡有好幾筆",
+"cause_id": "S04-C1",
+"cause": "多個系統各自建立客戶資料，沒有主檔歸屬規則",
+"steps": "O2C-1,O2C-2,I2R-1",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S05",
+"symptom": "報價常算錯，折扣失控",
+"cause_id": "S05-C1",
+"cause": "定價規則只存在個人經驗",
+"steps": "O2C-1",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S05",
+"symptom": "報價常算錯，折扣失控",
+"cause_id": "S05-C2",
+"cause": "折扣沒有簽核關卡",
+"steps": "O2C-1",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S06",
+"symptom": "交期總是承諾不準",
+"cause_id": "S06-C1",
+"cause": "接單時看不到可用庫存與產能",
+"steps": "O2C-3,PTP-4",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S06",
+"symptom": "交期總是承諾不準",
+"cause_id": "S06-C2",
+"cause": "物料需求靠經驗推估",
+"steps": "PTP-3",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S07",
+"symptom": "採購常買錯或買太多",
+"cause_id": "S07-C1",
+"cause": "請購與庫存、需求計畫脫節",
+"steps": "P2P-1,PTP-3",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S07",
+"symptom": "採購常買錯或買太多",
+"cause_id": "S07-C2",
+"cause": "同一物料被建成多個料號",
+"steps": "PTP-1",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S08",
+"symptom": "同樣的客訴一再發生",
+"cause_id": "S08-C1",
+"cause": "客訴沒有轉成品質異常，也沒有追蹤矯正",
+"steps": "I2R-4,I2R-5",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S08",
+"symptom": "同樣的客訴一再發生",
+"cause_id": "S08-C2",
+"cause": "檢驗結果沒有回饋到供應商評鑑",
+"steps": "P2P-5,P2P-2",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S09",
+"symptom": "工程改版後，產線還在用舊版",
+"cause_id": "S09-C1",
+"cause": "工程變更沒有連動物料清單與工單",
+"steps": "PTP-2,PTP-5",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S10",
+"symptom": "不知道每張單到底賺不賺",
+"cause_id": "S10-C1",
+"cause": "成本只算到總額，沒有分攤到工單",
+"steps": "R2R-4,PTP-9",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S10",
+"symptom": "不知道每張單到底賺不賺",
+"cause_id": "S10-C2",
+"cause": "現場工時沒有回報到工單",
+"steps": "PTP-6",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S11",
+"symptom": "主管要報表，每次都要人工拉試算表",
+"cause_id": "S11-C1",
+"cause": "資料散在多個系統，沒有共同的資料層",
+"steps": "R2R-6",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S12",
+"symptom": "請假、報帳簽核要跑很多天",
+"cause_id": "S12-C1",
+"cause": "紙本或郵件簽核，沒有流程引擎",
+"steps": "H2R-3,R2R-2,P2P-1",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S13",
+"symptom": "每月薪資都要人工核對出勤",
+"cause_id": "S13-C1",
+"cause": "出勤與薪資沒有串接",
+"steps": "H2R-3,H2R-4",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S14",
+"symptom": "員工離職後還能登入系統",
+"cause_id": "S14-C1",
+"cause": "離職流程沒有觸發帳號回收",
+"steps": "H2R-8",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S15",
+"symptom": "電子發票常開錯或漏開",
+"cause_id": "S15-C1",
+"cause": "出貨與開票分屬不同系統，靠人工比對",
+"steps": "O2C-4,O2C-6",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+},
+{
+"symptom_id": "S16",
+"symptom": "設備常突然故障停線",
+"cause_id": "S16-C1",
+"cause": "沒有預防保養排程，只在故障後維修",
+"steps": "PTP-8",
+"basis": "常見導入情境的通則歸納，非特定個案",
+"confidence": "中"
+}
+]

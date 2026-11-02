@@ -1,0 +1,1294 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>企業系統生態地圖</title>
+<meta name="description" content="企業系統導入的解法地圖：從客戶症狀推導到流程、能力、系統類別、主檔歸屬與資料流。">
+<link rel="stylesheet" href="src/theme.css">
+<style>
+  .eco { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: grid; gap: var(--cds-gap-lg); }
+  .eco h1, .eco h2, .eco h3, .eco p { margin: 0; }
+  .eco [hidden] { display: none !important; }
+  .eco-head { display: grid; gap: var(--cds-gap-xs); }
+  .eco-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.2; }
+  .eco-lede { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); }
+  .eco .eco-lede b { color: var(--color-fg); font-weight: 600; }
+  .eco-bar { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); align-items: end; }
+  .eco-field { display: grid; gap: 2px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .eco-grow { flex: 1 1 12rem; }
+  .eco-input { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); max-width: 100%; box-sizing: border-box; }
+  .eco-grow .eco-input { width: 100%; }
+  .eco-btn { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); background: none; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; }
+  .eco-tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); }
+  .eco-tabs button { all: unset; cursor: pointer; padding: var(--cds-pad-xs) var(--cds-pad-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .eco-tabs button[aria-selected="true"] { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); border-bottom-color: var(--color-fg); }
+  .eco-body { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: start; }
+  .eco-main { flex: 1 1 34rem; min-width: 0; display: grid; }
+  .eco-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); min-width: 0; }
+  .eco-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+  .eco-note, .eco-legend { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .eco-tools { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .eco-seg { display: inline-flex; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); overflow: hidden; }
+  .eco-seg button { all: unset; cursor: pointer; padding: var(--cds-pad-xs) var(--cds-pad-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .eco-seg button[aria-pressed="true"] { background: var(--color-bg); color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  .eco-check { display: inline-flex; gap: var(--cds-gap-xs); align-items: center; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .eco-view { position: relative; min-height: 460px; }
+  .eco-view svg { display: block; overflow: visible; }
+  .eco-scroll { overflow: auto; max-height: 75vh; }
+  .eco-focus { min-height: 3.2em; display: grid; align-content: start; gap: 2px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; margin-bottom: var(--cds-gap-sm); }
+  .eco-focus .f1 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); color: var(--color-fg); }
+  .eco-hit { cursor: pointer; }
+  .eco-keys { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); }
+  .eco-key { display: inline-flex; align-items: center; gap: 6px; }
+  .eco-sw { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .eco-chips { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); }
+  .eco-chip { font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 2px var(--cds-pad-sm); cursor: pointer; text-align: left; }
+  .eco-chip.on { border-color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  .eco-chip.dim { color: var(--color-fg-muted); opacity: .6; }
+  .eco-stack { display: grid; gap: var(--cds-gap-md); }
+  .eco-stack h3 { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); margin-bottom: 4px; }
+  .eco-legend-lines { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); align-items: center; }
+  .eco-legend-lines svg { vertical-align: middle; margin-right: 6px; }
+  .eco-legend-lines line { stroke: var(--color-fg-muted); stroke-width: 2; }
+  .eco-anom { display: grid; gap: var(--cds-gap-xs); }
+  .eco-anom-list { display: grid; gap: var(--cds-gap-xs); }
+  .eco-anom-item { font: inherit; font-size: var(--cds-font-size-caption); text-align: left; color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-left: 3px solid var(--color-warn); border-radius: var(--cds-radius); padding: var(--cds-pad-xs) var(--cds-pad-sm); cursor: pointer; display: grid; gap: 2px; }
+  .eco-anom-item span { color: var(--color-fg-muted); }
+  .eco-laws { display: grid; gap: 4px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-top: var(--cds-gap-sm); }
+  .eco-laws b { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+  .eco-detail { flex: 1 1 16rem; max-width: 100%; }
+  .eco-detail-body { display: grid; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .eco-detail-body .d-name { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); color: var(--color-fg); }
+  .eco-detail-body dl { display: grid; grid-template-columns: auto 1fr; gap: 4px var(--cds-gap-sm); margin: 0; }
+  .eco-detail-body dt { color: var(--color-fg-muted); white-space: nowrap; }
+  .eco-detail-body dd { margin: 0; color: var(--color-fg); }
+  .eco-detail-body .d-warn { color: var(--color-warn); }
+  .eco-basis { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .eco-fail { display: flex; align-items: center; justify-content: center; gap: var(--cds-gap-xs); min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .eco-fail::before { content: ""; width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--color-bad); }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+</head>
+<body>
+<div id="dash-root">
+<div class="eco">
+  <header class="eco-head" id="overview">
+    <h1 class="eco-title">企業系統生態地圖</h1>
+    <p class="eco-lede">排除簽核、表單這類通用機制後，「<b class="dash-skeleton" data-draw="top-cap" data-source="summary" data-field="top_capability" data-row="0">—</b>」出現在 <b class="dash-skeleton" data-draw="top-deg" data-source="summary" data-field="top_degree" data-row="0">—</b> 個系統類別，是最多系統重複持有的項目。</p>
+  </header>
+
+  <div class="eco-bar" role="group" aria-label="篩選">
+    <label class="eco-field"><span>企業規模</span>
+      <select class="eco-input eco-size" aria-label="企業規模">
+        <option value="">全部規模</option>
+        <option value="1">微型（10 人以下）</option>
+        <option value="2">小型（10–50 人）</option>
+        <option value="3">中型（50–300 人）</option>
+        <option value="4">大型（300 人以上）</option>
+      </select>
+    </label>
+    <label class="eco-field"><span>產業</span>
+      <select class="eco-input eco-ind" aria-label="產業">
+        <option value="">全部產業</option>
+        <option value="製造">製造</option>
+        <option value="貿易">貿易</option>
+        <option value="零售">零售</option>
+        <option value="服務">服務</option>
+      </select>
+    </label>
+    <label class="eco-field eco-grow"><span>搜尋</span>
+      <input class="eco-input eco-search" type="search" list="eco-search-list" placeholder="輸入類別、能力或症狀" aria-label="搜尋類別、能力或症狀">
+    </label>
+    <datalist id="eco-search-list" data-draw="search-list" data-source="categories capabilities symptoms"></datalist>
+    <button class="eco-btn eco-reset" type="button">清除篩選與選取</button>
+  </div>
+  <p class="eco-note">規模與產業篩選會套用到所有視圖：不適用的系統類別會淡化，不會隱藏。</p>
+
+  <nav class="eco-tabs" role="tablist" aria-label="視圖">
+    <button type="button" role="tab" data-view="overlap" aria-selected="true">能力重疊</button>
+    <button type="button" role="tab" data-view="matrix" aria-selected="false">能力 × 系統</button>
+    <button type="button" role="tab" data-view="paths" aria-selected="false">症狀推導</button>
+    <button type="button" role="tab" data-view="flows" aria-selected="false">主檔與資料流</button>
+    <button type="button" role="tab" data-view="lanes" aria-selected="false">流程泳道</button>
+  </nav>
+
+  <div class="eco-body">
+    <div class="eco-main">
+      <section class="eco-card" id="overlap" data-panel="overlap">
+        <h2>能力重疊</h2>
+        <p class="eco-note">兩個類別之間的線，代表它們具備相同的能力；線越粗，共同能力越多。點選類別可固定焦點，再點一次取消。</p>
+        <div class="eco-tools">
+          <div class="eco-seg" role="group" aria-label="檢視方式">
+            <button type="button" data-mode="cat" aria-pressed="true">以類別看</button>
+            <button type="button" data-mode="cap" aria-pressed="false">以能力看</button>
+          </div>
+          <div class="eco-seg" role="group" aria-label="連線計算方式">
+            <button type="button" data-linkby="all" aria-pressed="true">計算全部能力</button>
+            <button type="button" data-linkby="obj" aria-pressed="false">只計算資料物件</button>
+          </div>
+          <label class="eco-check"><input type="checkbox" class="eco-mech"> 納入通用機制（簽核、表單、知識庫等）</label>
+          <select class="eco-input eco-cap" data-draw="cap-select" data-source="cap_degree" aria-label="選擇能力" hidden></select>
+        </div>
+        <div class="eco-view dash-skeleton" id="overlap-map" data-draw="map" data-source="pairs cat_stats cap_degree categories"></div>
+        <p class="eco-legend">圓點大小代表該類別的能力數，顏色代表所屬領域。「只計算資料物件」時，線代表兩個系統持有同一種資料，也就是主檔歸屬要談定的地方。</p>
+      </section>
+
+      <section class="eco-card" id="matrix" data-panel="matrix" hidden>
+        <h2>能力 × 系統</h2>
+        <p class="eco-note">每列一項能力，每欄一個系統類別。深色格是該類別單品的核心能力，淺色格是常見但依產品而異。點欄名選類別，點列名選能力。</p>
+        <div class="eco-scroll">
+          <div class="eco-view dash-skeleton" id="matrix-grid" data-draw="matrix" data-source="categories capabilities memberships"></div>
+        </div>
+      </section>
+
+      <section class="eco-card" id="paths" data-panel="paths" hidden>
+        <h2>症狀推導</h2>
+        <p class="eco-note">由左到右：客戶口中的症狀、可能的根因、根因所在的流程步驟、該步驟需要的能力、具備該能力的系統類別。點任一節點，只亮出經過它的路徑。</p>
+        <div class="eco-view dash-skeleton" id="paths-graph" data-draw="paths" data-source="symptoms processes memberships categories"></div>
+        <p class="eco-legend">症狀與根因是常見導入情境的通則歸納，不代表特定個案；同一症狀在不同企業可能有不同根因。</p>
+      </section>
+
+      <section class="eco-card" id="flows" data-panel="flows" hidden>
+        <h2>主檔與資料流</h2>
+        <p class="eco-note">箭頭代表資料從哪個系統流向哪個系統。點選系統，只亮出它送出與接收的資料流；選擇資料物件，會標出主檔、鏡像與引用的系統。</p>
+        <div class="eco-tools">
+          <select class="eco-input eco-obj" data-draw="obj-select" data-source="master_roles" aria-label="選擇資料物件"></select>
+        </div>
+        <div class="eco-legend-lines">
+          <span><svg width="28" height="6"><line x1="0" y1="3" x2="28" y2="3"></line></svg>即時</span>
+          <span><svg width="28" height="6"><line x1="0" y1="3" x2="28" y2="3" stroke-dasharray="6 4"></line></svg>批次</span>
+          <span><svg width="28" height="6"><line x1="0" y1="3" x2="28" y2="3" stroke-dasharray="1.5 4" stroke-linecap="round"></line></svg>日結</span>
+        </div>
+        <div class="eco-view dash-skeleton" id="flows-graph" data-draw="flows" data-source="flows master_roles categories"></div>
+        <p class="eco-legend">選擇資料物件時：粗框實心圓是依目前篩選生效的主檔，細框圓是其他主檔候選，實心小圓是鏡像（保留完整同步副本），空心小圓是引用（只存識別碼）。iPaaS／ESB 可以承接圖中任何一條資料流，因此不另畫成節點。</p>
+        <div class="eco-anom" id="flows-check">
+          <h2>主檔檢查</h2>
+          <p class="eco-note">依目前的規模與產業篩選，列出有系統持有卻沒有可當主檔的系統，或有兩個以上主檔候選、實務上常有爭議的資料物件。</p>
+          <div class="eco-anom-list" data-draw="anomalies" data-source="master_roles categories"></div>
+          <p class="eco-note eco-anom-none" hidden>目前篩選下沒有需要注意的資料物件。</p>
+        </div>
+      </section>
+
+      <section class="eco-card" id="lanes" data-panel="lanes" hidden>
+        <h2>流程泳道</h2>
+        <p class="eco-note">每欄一個流程步驟，每列一個系統類別。實心圓是該步驟的典型承接系統，空心圓是也具備相關能力的系統。典型系統換手的位置標為斷點，是需要介接或人工轉檔的地方。</p>
+        <div class="eco-tools">
+          <select class="eco-input eco-proc" data-draw="proc-select" data-source="processes" aria-label="選擇流程"></select>
+        </div>
+        <div class="eco-scroll">
+          <div class="eco-view dash-skeleton" id="lanes-grid" data-draw="lanes" data-source="processes memberships capabilities categories compliance"></div>
+        </div>
+        <p class="eco-legend">典型分工假設各步驟由專業系統承接；若整個流程由單一套裝系統承接，就不會出現斷點。上方的數字標記是該步驟涉及的臺灣法遵項目數。</p>
+      </section>
+    </div>
+
+    <aside class="eco-card eco-detail" id="detail">
+      <h2>說明</h2>
+      <p class="eco-note eco-detail-empty">點選任一系統類別或能力，這裡會顯示定義、適用條件與判斷依據。</p>
+      <div class="eco-detail-body" data-draw="detail" data-source="categories capabilities memberships master_roles compliance"></div>
+    </aside>
+  </div>
+
+  <p class="eco-basis">所有類別歸屬、流程分工、症狀、主檔歸屬與法遵資料，都是 Claude 依業界通則草擬，每筆附判斷依據與信心等級，未經個案驗證。法遵項目只標示影響範圍，未逐條查證條文與適用門檻。</p>
+
+  <p class="eco-site-foot">原始碼與資料檔：<a href="https://github.com/jk831224/enterprise-system-map">github.com/jk831224/enterprise-system-map</a>。資料放在 <code>data/</code> 資料夾，修改 JSON 即可更新地圖。</p>
+</div>
+</div>
+<script src="src/runtime.js"></script>
+<script>
+  const MECH = '通用機制';
+  const OBJ = '資料物件';
+  const TYPES = ['資料物件', '領域功能', '通用機制'];
+  const VIEWS = ['overlap', 'matrix', 'paths', 'flows', 'lanes'];
+  const SIZE_TXT = { 1: '微型（10 人以下）', 2: '小型（10–50 人）', 3: '中型（50–300 人）', 4: '大型（300 人以上）' };
+  const LEVEL_TXT = { 1: '低', 2: '中', 3: '高' };
+
+  // ---------- 計算 ----------
+  dash.calc('cat_stats', {
+    inputs: ['categories', 'memberships', 'capabilities'],
+    title: '各類別能力統計',
+    description: '每個類別具備的能力數，分為含通用機制與不含通用機制兩種算法。',
+    fn: (categories, memberships, capabilities) => {
+      const type = {};
+      for (const c of capabilities) type[c.capability] = c.type;
+      return categories.map((c) => {
+        const mine = memberships.filter((m) => m.category === c.id).map((m) => m.capability);
+        return { id: c.id, name: c.name, domain: c.domain, domain_order: Number(c.domain_order), caps_all: mine.length, caps_core: mine.filter((x) => type[x] !== '通用機制').length };
+      });
+    },
+  });
+
+  dash.calc('cap_degree', {
+    inputs: ['memberships', 'capabilities'],
+    title: '各能力出現類別數',
+    description: '每項能力出現在幾個類別、是哪些類別，由多到少排序。',
+    fn: (memberships, capabilities) => {
+      const by = {};
+      for (const m of memberships) (by[m.capability] = by[m.capability] || []).push(m.category);
+      return capabilities
+        .map((c) => ({ capability: c.capability, type: c.type, degree: (by[c.capability] || []).length, categories: (by[c.capability] || []).join(',') }))
+        .sort((a, b) => b.degree - a.degree);
+    },
+  });
+
+  dash.calc('pairs', {
+    inputs: ['memberships', 'capabilities'],
+    title: '類別兩兩共同能力',
+    description: '任兩個類別共同具備的能力數，分為全部、不含通用機制、只算資料物件三種。',
+    fn: (memberships, capabilities) => {
+      const type = {};
+      for (const c of capabilities) type[c.capability] = c.type;
+      const by = {};
+      for (const m of memberships) (by[m.capability] = by[m.capability] || []).push(m.category);
+      const acc = {};
+      for (const cap of Object.keys(by)) {
+        const cs = by[cap].slice().sort();
+        for (let i = 0; i < cs.length; i += 1) {
+          for (let j = i + 1; j < cs.length; j += 1) {
+            const key = cs[i] + '|' + cs[j];
+            if (!acc[key]) acc[key] = { pair: key, a: cs[i], b: cs[j], n_all: 0, n_core: 0, n_obj: 0, all: [], core: [], obj: [] };
+            const p = acc[key];
+            p.n_all += 1; p.all.push(cap);
+            if (type[cap] !== '通用機制') { p.n_core += 1; p.core.push(cap); }
+            if (type[cap] === '資料物件') { p.n_obj += 1; p.obj.push(cap); }
+          }
+        }
+      }
+      return Object.values(acc)
+        .map((p) => ({ pair: p.pair, a: p.a, b: p.b, n_all: p.n_all, n_core: p.n_core, n_obj: p.n_obj, items_all: p.all.join('、'), items_core: p.core.join('、'), items_obj: p.obj.join('、') }))
+        .sort((x, y) => y.n_all - x.n_all);
+    },
+  });
+
+  dash.calc('summary', {
+    inputs: ['cap_degree'],
+    title: '重疊最廣的能力',
+    description: '排除通用機制後，出現在最多類別的那一項能力，以及它出現的類別數。',
+    fn: (cap_degree) => {
+      const top = cap_degree.filter((r) => r.type !== '通用機制')[0];
+      return [{ top_capability: top.capability, top_degree: top.degree }];
+    },
+  });
+
+  // ---------- 共用 ----------
+  const P = () => dash.params();
+  const pick = (patch) => dash.setParams(patch);
+  const selCat = (id) => pick({ cat: id, focus: id ? 'cat' : null });
+  const selCap = (name) => pick({ cap: name, focus: name ? 'cap' : null });
+  const colorOf = (order) => dash.colors[Number(order) % dash.colors.length];
+  const fits = (c) => {
+    const s = Number(P().size) || 0;
+    const ind = P().ind || '';
+    if (!c) return false;
+    return (!s || Number(c.size_min) <= s) && (!ind || c.industries === '通用' || String(c.industries).split(',').includes(ind));
+  };
+  const guard = (el, ids) => {
+    const st = ids.map((id) => dash.data(id).status);
+    el.classList.toggle('dash-skeleton', st.includes('loading'));
+    if (st.includes('error')) {
+      const f = document.createElement('div');
+      f.className = 'eco-fail';
+      f.textContent = '無法載入';
+      el.replaceChildren(f);
+      return false;
+    }
+    if (st.some((s) => s !== 'ok')) { el.replaceChildren(); return false; }
+    return true;
+  };
+  const div = (cls, text) => {
+    const d = document.createElement('div');
+    if (cls) d.className = cls;
+    if (text != null) d.textContent = text;
+    return d;
+  };
+  const focusLines = (box, arr) => box.replaceChildren(...arr.map(([cls, text]) => div(cls, text)));
+  const fitText = (node, max) => {
+    const full = node.textContent;
+    if (node.getComputedTextLength() <= max) return;
+    let s = full;
+    while (s.length > 1 && node.getComputedTextLength() > max) { s = s.slice(0, -1); node.textContent = s + '…'; }
+  };
+  const anomalyList = () => {
+    const mr = dash.data('master_roles');
+    const cs = dash.data('categories');
+    if (mr.status !== 'ok' || cs.status !== 'ok') return null;
+    const cat = Object.fromEntries(cs.data.map((c) => [c.id, c]));
+    const objs = [...new Set(mr.data.map((r) => r.object))];
+    const out = [];
+    for (const o of objs) {
+      const rows = mr.data.filter((r) => r.object === o && fits(cat[r.category]));
+      if (!rows.length) continue;
+      const cands = rows.filter((r) => r.role === '主檔候選');
+      const contested = rows.some((r) => r.contested === '是');
+      if (!cands.length) out.push({ object: o, kind: 'none', holders: rows.map((r) => r.category) });
+      else if (contested && cands.length >= 2) out.push({ object: o, kind: 'contested', holders: cands.sort((a, b) => Number(a.priority) - Number(b.priority)).map((r) => r.category), note: cands[0].note });
+    }
+    return out;
+  };
+
+  // ---------- 控制項 ----------
+  const hashView = location.hash.slice(1);
+  if (VIEWS.includes(hashView)) dash.setParams({ view: hashView });
+
+  for (const btn of document.querySelectorAll('.eco-tabs button[data-view]')) {
+    btn.addEventListener('click', () => { pick({ view: btn.dataset.view }); dash.setLink(btn.dataset.view); });
+  }
+  for (const btn of document.querySelectorAll('.eco-seg button[data-mode]')) btn.addEventListener('click', () => pick({ mode: btn.dataset.mode }));
+  for (const btn of document.querySelectorAll('.eco-seg button[data-linkby]')) btn.addEventListener('click', () => pick({ linkby: btn.dataset.linkby }));
+  for (const cb of document.querySelectorAll('.eco-mech')) cb.addEventListener('change', () => pick({ mech: cb.checked }));
+  for (const s of document.querySelectorAll('.eco-size')) s.addEventListener('change', () => pick({ size: s.value ? Number(s.value) : null }));
+  for (const s of document.querySelectorAll('.eco-ind')) s.addEventListener('change', () => pick({ ind: s.value || null }));
+  for (const b of document.querySelectorAll('.eco-reset')) b.addEventListener('click', () => dash.resetParams());
+  for (const inp of document.querySelectorAll('.eco-search')) {
+    inp.addEventListener('change', () => {
+      const v = inp.value.trim();
+      if (!v) return;
+      const cs = dash.data('categories');
+      const ks = dash.data('capabilities');
+      const ss = dash.data('symptoms');
+      if (v.startsWith('症狀｜') && ss.status === 'ok') {
+        const s = ss.data.find((r) => r.symptom === v.slice(3));
+        if (s) pick({ view: 'paths', p3: 'sym:' + s.symptom_id });
+      } else if (v.includes('｜') && cs.status === 'ok') {
+        const c = cs.data.find((r) => r.name === v.split('｜')[0]);
+        if (c) selCat(c.id);
+      } else if (ks.status === 'ok' && ks.data.some((r) => r.capability === v)) {
+        selCap(v);
+      } else return;
+      inp.value = '';
+    });
+  }
+
+  dash.onData(() => {
+    const p = P();
+    const view = VIEWS.includes(p.view) ? p.view : 'overlap';
+    for (const b of document.querySelectorAll('.eco-tabs button[data-view]')) b.setAttribute('aria-selected', String(b.dataset.view === view));
+    for (const s of document.querySelectorAll('[data-panel]')) s.hidden = s.dataset.panel !== view;
+    const mode = p.mode === 'cap' ? 'cap' : 'cat';
+    for (const b of document.querySelectorAll('.eco-seg button[data-mode]')) b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+    for (const s of document.querySelectorAll('.eco-cap')) s.hidden = mode !== 'cap';
+    const linkby = p.linkby === 'obj' ? 'obj' : 'all';
+    for (const b of document.querySelectorAll('.eco-seg button[data-linkby]')) b.setAttribute('aria-pressed', String(b.dataset.linkby === linkby));
+    for (const cb of document.querySelectorAll('.eco-mech')) cb.checked = !!p.mech;
+    for (const s of document.querySelectorAll('.eco-size')) s.value = p.size ? String(p.size) : '';
+    for (const s of document.querySelectorAll('.eco-ind')) s.value = p.ind || '';
+    for (const e of document.querySelectorAll('.eco-detail-empty')) e.hidden = !!p.focus && !!(p.focus === 'cat' ? p.cat : p.cap);
+    if (view === 'flows') {
+      const list = anomalyList();
+      for (const e of document.querySelectorAll('.eco-anom-none')) e.hidden = !list || list.length > 0;
+    }
+  });
+
+  // ---------- 標題摘要 ----------
+  const summaryText = (name, field) => dash.draw(name, (el) => {
+    const s = dash.data('summary');
+    el.classList.toggle('dash-skeleton', s.status === 'loading');
+    el.textContent = s.status === 'ok' && s.data.length ? String(s.data[0][field]) : '—';
+  });
+  summaryText('top-cap', 'top_capability');
+  summaryText('top-deg', 'top_degree');
+
+  // ---------- 搜尋選項 ----------
+  dash.draw('search-list', (dl) => {
+    const cs = dash.data('categories');
+    const ks = dash.data('capabilities');
+    const ss = dash.data('symptoms');
+    const vals = [];
+    if (cs.status === 'ok') for (const c of cs.data) vals.push(`${c.name}｜${c.full_name}`);
+    if (ks.status === 'ok') for (const k of ks.data) vals.push(k.capability);
+    if (ss.status === 'ok') for (const s of new Set(ss.data.map((r) => r.symptom))) vals.push('症狀｜' + s);
+    dl.replaceChildren(...vals.map((v) => { const o = document.createElement('option'); o.value = v; return o; }));
+  });
+
+  // ---------- V1 能力重疊 ----------
+  dash.draw('cap-select', (sel) => {
+    const d = dash.data('cap_degree');
+    const mech = !!P().mech;
+    const rows = d.status === 'ok' ? d.data.filter((r) => (mech || r.type !== MECH) && r.degree > 0) : [];
+    sel.replaceChildren(...rows.map((r) => new Option(`${r.capability}（${r.degree}）`, r.capability)));
+    const cur = P().cap;
+    sel.value = cur && rows.some((r) => r.capability === cur) ? cur : (rows[0] ? rows[0].capability : '');
+    sel.onchange = () => selCap(sel.value);
+  });
+
+  dash.draw('map', (el) => {
+    if (!guard(el, ['pairs', 'cat_stats', 'cap_degree', 'categories'])) return;
+    const ps = dash.data('pairs').data;
+    const cs = dash.data('cat_stats').data;
+    const cd = dash.data('cap_degree').data;
+    const catRow = Object.fromEntries(dash.data('categories').data.map((c) => [c.id, c]));
+    const p = P();
+    const mode = p.mode === 'cap' ? 'cap' : 'cat';
+    const mech = !!p.mech;
+    const linkby = p.linkby === 'obj' ? 'obj' : 'all';
+    const nKey = linkby === 'obj' ? 'n_obj' : mech ? 'n_all' : 'n_core';
+    const iKey = linkby === 'obj' ? 'items_obj' : mech ? 'items_all' : 'items_core';
+    const lockedCat = p.cat || null;
+    const capRows = cd.filter((r) => (mech || r.type !== MECH) && r.degree > 0);
+    const cap = p.cap && capRows.some((r) => r.capability === p.cap) ? p.cap : (capRows[0] ? capRows[0].capability : null);
+    const capRow = capRows.find((r) => r.capability === cap) || null;
+    const capSet = new Set(capRow ? capRow.categories.split(',') : []);
+
+    const W = Math.max(300, el.clientWidth);
+    const narrow = W < 640;
+    const fs = narrow ? 11 : 12;
+    const domains = [...new Map(cs.map((c) => [c.domain_order, c.domain])).entries()].sort((a, b) => a[0] - b[0]);
+    const ncol = W >= 760 ? 3 : 2;
+    const nrow = Math.ceil(domains.length / ncol);
+    const cellW = W / ncol;
+    const cellH = Math.max(narrow ? 230 : 250, Math.min(300, cellW * 0.9));
+    const H = nrow * cellH;
+    const centerOf = {};
+    domains.forEach(([order], i) => {
+      const r = Math.floor(i / ncol);
+      const inRow = Math.min(ncol, domains.length - r * ncol);
+      const c = i % ncol;
+      const offset = (W - inRow * cellW) / 2;
+      centerOf[order] = { x: offset + cellW * (c + 0.5), y: cellH * (r + 0.5) + 10 };
+    });
+
+    const focus = div('eco-focus');
+    const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    el.replaceChildren(focus, svg.node());
+
+    const probe = svg.append('g');
+    const labelW = {};
+    for (const c of cs) {
+      const t = probe.append('text').style('font-size', fs + 'px').style('font-weight', 600).text(c.name);
+      labelW[c.id] = t.node().getComputedTextLength();
+    }
+    probe.remove();
+
+    const sizeKey = mech ? 'caps_all' : 'caps_core';
+    const maxCaps = d3.max(cs, (c) => c[sizeKey]) || 1;
+    const rScale = d3.scaleSqrt([0, maxCaps], [4, narrow ? 11 : 14]);
+    const nodes = cs.map((c, i) => {
+      const ctr = centerOf[c.domain_order];
+      const a = (i * 2.4) % (2 * Math.PI);
+      const r = rScale(c[sizeKey]);
+      return { ...c, fit: fits(catRow[c.id]), full: catRow[c.id] ? catRow[c.id].full_name : '', r, coll: Math.max(r + 4, labelW[c.id] / 2 + 6) + 6, x: ctr.x + 30 * Math.cos(a), y: ctr.y + 30 * Math.sin(a) };
+    });
+    d3.forceSimulation(nodes)
+      .force('x', d3.forceX((n) => centerOf[n.domain_order].x).strength(0.3))
+      .force('y', d3.forceY((n) => centerOf[n.domain_order].y).strength(0.3))
+      .force('collide', d3.forceCollide((n) => n.coll).iterations(3))
+      .stop()
+      .tick(300);
+    const byId = {};
+    for (const n of nodes) {
+      n.x = Math.max(n.coll, Math.min(W - n.coll, n.x));
+      n.y = Math.max(34, Math.min(H - n.r - fs - 10, n.y));
+      byId[n.id] = n;
+    }
+
+    const regions = domains.map(([order, name]) => {
+      const members = nodes.filter((n) => n.domain_order === order);
+      const enc = d3.packEnclose(members.map((n) => ({ x: n.x, y: n.y + fs / 2, r: n.coll + 8 })));
+      return { order, name, ...enc };
+    });
+    const gReg = svg.append('g');
+    gReg.selectAll('circle').data(regions).join('circle')
+      .attr('cx', (d) => d.x).attr('cy', (d) => d.y).attr('r', (d) => d.r)
+      .style('fill', (d) => colorOf(d.order)).style('fill-opacity', 0.07)
+      .style('stroke', (d) => colorOf(d.order)).style('stroke-opacity', 0.25);
+
+    const links = ps.filter((q) => q[nKey] > 0 && byId[q.a] && byId[q.b]).map((q) => ({ ...q, n: q[nKey], items: q[iKey], itemSet: new Set(q[iKey].split('、')) }));
+    const maxShared = d3.max(links, (q) => q.n) || 1;
+    const wScale = d3.scaleLinear([1, Math.max(2, maxShared)], [1, 5]);
+    const curve = (A, B) => {
+      const mx = (A.x + B.x) / 2;
+      const my = (A.y + B.y) / 2;
+      const dx = B.x - A.x;
+      const dy = B.y - A.y;
+      return `M${A.x},${A.y} Q${mx - dy * 0.12},${my + dx * 0.12} ${B.x},${B.y}`;
+    };
+    const linkSel = svg.append('g').attr('fill', 'none').selectAll('path').data(links).join('path')
+      .attr('d', (q) => curve(byId[q.a], byId[q.b]))
+      .attr('stroke-linecap', 'round')
+      .attr('stroke-width', (q) => wScale(q.n));
+
+    const nodeSel = svg.append('g').selectAll('g').data(nodes).join('g').attr('class', 'eco-hit');
+    nodeSel.append('circle')
+      .attr('cx', (n) => n.x).attr('cy', (n) => n.y).attr('r', (n) => n.r)
+      .style('fill', (n) => colorOf(n.domain_order))
+      .style('stroke', 'var(--color-panel)').style('stroke-width', 1.5);
+    nodeSel.append('text')
+      .attr('x', (n) => n.x).attr('y', (n) => n.y + n.r + fs + 1)
+      .attr('text-anchor', 'middle')
+      .style('font-size', fs + 'px')
+      .text((n) => n.name);
+
+    gReg.selectAll('text').data(regions).join('text')
+      .attr('x', (d) => d.x).attr('y', (d) => Math.max(fs + 2, d.y - d.r - 6))
+      .attr('text-anchor', 'middle')
+      .style('font-size', fs + 'px').style('font-weight', 600)
+      .style('fill', (d) => colorOf(d.order))
+      .text((d) => d.name);
+
+    const baseOpacity = (m) => (m.fit ? 1 : 0.3);
+    const applyCat = (id) => {
+      const n = id ? byId[id] : null;
+      const nb = new Set();
+      if (n) for (const q of links) { if (q.a === id) nb.add(q.b); if (q.b === id) nb.add(q.a); }
+      linkSel
+        .style('stroke', (q) => (n && (q.a === id || q.b === id) ? colorOf(n.domain_order) : 'var(--cds-chart-muted)'))
+        .style('stroke-opacity', (q) => (!n ? 0.3 : q.a === id || q.b === id ? 0.9 : 0.04));
+      nodeSel.style('opacity', (m) => (!n || m.id === id || nb.has(m.id) ? baseOpacity(m) : 0.18));
+      nodeSel.select('circle').style('stroke', (m) => (n && m.id === id ? 'var(--color-fg)' : 'var(--color-panel)')).style('stroke-width', (m) => (n && m.id === id ? 2.5 : 1.5));
+      nodeSel.select('text')
+        .style('font-weight', (m) => (n && m.id === id ? 700 : 400))
+        .style('fill', (m) => (n && m.id === id ? 'var(--color-fg)' : 'var(--color-fg-muted)'));
+      if (!n) { focusLines(focus, [['f1', '點選或滑過任一類別'], ['', `${links.length} 組類別之間有共同能力`]]); return; }
+      const best = links.filter((q) => q.a === id || q.b === id).sort((x, y) => y.n - x.n)[0];
+      const other = best ? byId[best.a === id ? best.b : best.a].name : null;
+      focusLines(focus, [
+        ['f1', `${n.name}｜${n.full}`],
+        ['', `${n.domain}・能力 ${n[sizeKey]} 項・與 ${nb.size} 個類別有共同能力${n.fit ? '' : '・不符合目前篩選'}`],
+        ['', best ? `共同最多：${other}（${best.n} 項：${best.items}）` : '沒有與其他類別共同的能力'],
+      ]);
+    };
+    const applyCap = () => {
+      linkSel
+        .style('stroke', 'var(--color-fg)')
+        .style('stroke-opacity', (q) => (capSet.has(q.a) && capSet.has(q.b) && q.itemSet.has(cap) ? 0.45 : 0))
+        .attr('stroke-width', 1.5);
+      nodeSel.style('opacity', (m) => (capSet.has(m.id) ? baseOpacity(m) : 0.15));
+      nodeSel.select('circle').style('stroke', (m) => (capSet.has(m.id) ? 'var(--color-fg)' : 'var(--color-panel)')).style('stroke-width', (m) => (capSet.has(m.id) ? 2 : 1.5));
+      nodeSel.select('text')
+        .style('font-weight', (m) => (capSet.has(m.id) ? 600 : 400))
+        .style('fill', (m) => (capSet.has(m.id) ? 'var(--color-fg)' : 'var(--color-fg-muted)'));
+      const doms = new Set(nodes.filter((m) => capSet.has(m.id)).map((m) => m.domain));
+      focusLines(focus, capRow ? [['f1', capRow.capability], ['', `${capRow.type}・出現在 ${capRow.degree} 個類別，分屬 ${doms.size} 個領域`]] : [['f1', '選擇一項能力']]);
+    };
+
+    if (mode === 'cap') {
+      applyCap();
+      nodeSel.on('click', (event, n) => { event.stopPropagation(); selCat(n.id); });
+    } else {
+      applyCat(lockedCat);
+      nodeSel
+        .on('pointerenter', (event, n) => applyCat(n.id))
+        .on('pointerleave', () => applyCat(lockedCat))
+        .on('click', (event, n) => { event.stopPropagation(); selCat(lockedCat === n.id ? null : n.id); });
+      svg.on('click', () => { if (lockedCat) selCat(null); });
+    }
+  });
+
+  // ---------- V2 能力 × 系統 ----------
+  dash.draw('matrix', (el) => {
+    if (!guard(el, ['categories', 'capabilities', 'memberships'])) return;
+    const cats = dash.data('categories').data.map((c) => ({ ...c, domain_order: Number(c.domain_order), order: Number(c.order) }))
+      .sort((a, b) => a.domain_order - b.domain_order || a.order - b.order);
+    const capsAll = dash.data('capabilities').data;
+    const mem = dash.data('memberships').data;
+    const has = new Map(mem.map((m) => [m.category + '|' + m.capability, m.confidence]));
+    const deg = {};
+    for (const m of mem) deg[m.capability] = (deg[m.capability] || 0) + 1;
+    const p = P();
+    const fs = 11.5;
+    const cell = 16;
+    const rows = [];
+    for (const t of TYPES) {
+      const rs = capsAll.filter((c) => c.type === t).sort((a, b) => (deg[b.capability] || 0) - (deg[a.capability] || 0));
+      rows.push({ group: t, count: rs.length });
+      for (const r of rs) rows.push(r);
+    }
+
+    const focus = div('eco-focus');
+    const keys = div('eco-keys');
+    const svg = d3.create('svg');
+    el.replaceChildren(focus, svg.node(), keys);
+
+    const probe = svg.append('g');
+    const mw = (txt, weight) => { const t = probe.append('text').style('font-size', fs + 'px').style('font-weight', weight || 400).text(txt); return t.node().getComputedTextLength(); };
+    const rowLabelW = Math.max(...rows.map((r) => (r.group ? mw(`${r.group}（${r.count}）`, 600) : mw(r.capability)))) + 12;
+    const colLabelH = Math.max(...cats.map((c) => mw(c.name))) + 12;
+    probe.remove();
+
+    const colX = {};
+    let x = rowLabelW;
+    let prevDom = null;
+    for (const c of cats) {
+      if (prevDom !== null && c.domain_order !== prevDom) x += 6;
+      colX[c.id] = x;
+      x += cell;
+      prevDom = c.domain_order;
+    }
+    const top = colLabelH + 8;
+    let y = top;
+    const rowY = [];
+    for (const r of rows) { rowY.push(y); y += r.group ? 22 : cell; }
+    const Wn = x + 4;
+    const Hn = y + 4;
+    const avail = el.clientWidth;
+    if (Wn <= avail) svg.attr('width', '100%').attr('viewBox', `0 0 ${Wn} ${Hn}`);
+    else svg.attr('width', Wn).attr('height', Hn).attr('viewBox', `0 0 ${Wn} ${Hn}`);
+
+    const band = svg.append('g');
+    if (p.cat && colX[p.cat] != null) band.append('rect').attr('x', colX[p.cat]).attr('y', 0).attr('width', cell).attr('height', Hn).style('fill', 'var(--color-fg)').style('fill-opacity', 0.07);
+    rows.forEach((r, i) => {
+      if (!r.group && r.capability === p.cap && p.cap) band.append('rect').attr('x', 0).attr('y', rowY[i]).attr('width', Wn).attr('height', cell).style('fill', 'var(--color-fg)').style('fill-opacity', 0.07);
+    });
+
+    // 欄名（直排）
+    const gc = svg.append('g');
+    for (const c of cats) {
+      const fit = fits(c);
+      gc.append('rect').attr('x', colX[c.id] + 1).attr('y', top - 6).attr('width', cell - 2).attr('height', 3).attr('rx', 1).style('fill', colorOf(c.domain_order)).style('opacity', fit ? 1 : 0.3);
+      gc.append('text')
+        .attr('transform', `translate(${colX[c.id] + cell / 2 + 4},${top - 10}) rotate(-90)`)
+        .style('font-size', fs + 'px')
+        .style('fill', c.id === p.cat ? 'var(--color-fg)' : fit ? 'var(--color-fg)' : 'var(--color-fg-muted)')
+        .style('font-weight', c.id === p.cat ? 700 : 400)
+        .style('opacity', fit ? 1 : 0.5)
+        .attr('class', 'eco-hit')
+        .text(c.name)
+        .on('pointerenter', () => focusLines(focus, [['f1', `${c.name}｜${c.full_name}`], ['', `${c.domain}${fit ? '' : '・不符合目前篩選'}`]]))
+        .on('click', () => selCat(p.cat === c.id ? null : c.id));
+    }
+
+    // 列與格
+    const gr = svg.append('g');
+    rows.forEach((r, i) => {
+      const ry = rowY[i];
+      if (r.group) {
+        gr.append('text').attr('x', 0).attr('y', ry + 15).style('font-size', fs + 'px').style('font-weight', 600).style('fill', 'var(--color-fg-muted)').text(`${r.group}（${r.count}）`);
+        return;
+      }
+      gr.append('text').attr('x', rowLabelW - 8).attr('y', ry + cell / 2 + 4).attr('text-anchor', 'end')
+        .style('font-size', fs + 'px')
+        .style('fill', 'var(--color-fg)')
+        .style('font-weight', r.capability === p.cap ? 700 : 400)
+        .attr('class', 'eco-hit')
+        .text(r.capability)
+        .on('pointerenter', () => focusLines(focus, [['f1', r.capability], ['', `${r.type}・出現在 ${deg[r.capability] || 0} 個類別`], ['', r.definition]]))
+        .on('click', () => selCap(p.cap === r.capability ? null : r.capability));
+      for (const c of cats) {
+        const conf = has.get(c.id + '|' + r.capability);
+        const fit = fits(c);
+        gr.append('rect')
+          .attr('x', colX[c.id] + 2).attr('y', ry + 2).attr('width', cell - 4).attr('height', cell - 4).attr('rx', 2)
+          .style('fill', conf ? colorOf(c.domain_order) : 'none')
+          .style('fill-opacity', conf ? (conf === '高' ? 0.9 : 0.35) : 0)
+          .style('stroke', conf ? 'none' : 'var(--cds-chart-grid)')
+          .style('opacity', fit ? 1 : 0.3)
+          .attr('class', 'eco-hit')
+          .on('pointerenter', () => focusLines(focus, [['f1', `${c.name} × ${r.capability}`], ['', conf ? (conf === '高' ? '具備：此類單品的核心能力' : '具備：常見但依產品而異') : '不具備']]))
+          .on('click', () => pick({ cat: c.id, cap: r.capability, focus: 'cap' }));
+      }
+    });
+    focusLines(focus, [['f1', '滑過欄名、列名或格子查看說明'], ['', `${cats.length} 個系統類別 × ${capsAll.length} 項能力`]]);
+
+    const doms = [...new Map(cats.map((c) => [c.domain_order, c.domain])).entries()];
+    keys.replaceChildren(...doms.map(([o, name]) => {
+      const k = document.createElement('span');
+      k.className = 'eco-key';
+      const sw = document.createElement('span');
+      sw.className = 'eco-sw';
+      sw.style.background = colorOf(o);
+      k.append(sw, document.createTextNode(name));
+      return k;
+    }));
+  });
+
+  // ---------- V3 症狀推導 ----------
+  dash.draw('paths', (el) => {
+    if (!guard(el, ['symptoms', 'processes', 'memberships', 'categories'])) return;
+    const sy = dash.data('symptoms').data;
+    const pr = dash.data('processes').data;
+    const mem = dash.data('memberships').data;
+    const cats = dash.data('categories').data;
+    const catById = Object.fromEntries(cats.map((c) => [c.id, c]));
+    const stepById = Object.fromEntries(pr.map((s) => [s.step_id, s]));
+    const COLS = ['症狀', '根因', '流程步驟', '能力', '系統類別'];
+
+    const N = new Map();
+    const E = [];
+    const seen = new Set();
+    const add = (key, col, label, sub, ord) => { if (!N.has(key)) N.set(key, { key, col, label, sub, ord }); return N.get(key); };
+    const link = (a, b) => { const k = a + '>' + b; if (!seen.has(k)) { seen.add(k); E.push({ s: a, t: b }); } };
+    sy.forEach((r, i) => {
+      add('sym:' + r.symptom_id, 0, r.symptom, '', i);
+      add('cause:' + r.cause_id, 1, r.cause, r.symptom, i);
+      link('sym:' + r.symptom_id, 'cause:' + r.cause_id);
+      for (const s of String(r.steps).split(',')) {
+        const st = stepById[s];
+        if (!st) continue;
+        add('step:' + s, 2, st.step_name, st.process_name, Number(st.process_order) * 100 + Number(st.step_order));
+        link('cause:' + r.cause_id, 'step:' + s);
+      }
+    });
+    for (const k of [...N.keys()].filter((x) => x.startsWith('step:'))) {
+      for (const c of String(stepById[k.slice(5)].capabilities).split(',')) { add('cap:' + c, 3, c, '', 0); link(k, 'cap:' + c); }
+    }
+    const holders = {};
+    for (const m of mem) (holders[m.capability] = holders[m.capability] || []).push(m.category);
+    for (const k of [...N.keys()].filter((x) => x.startsWith('cap:'))) {
+      for (const cid of holders[k.slice(4)] || []) { const c = catById[cid]; if (!c) continue; add('cat:' + cid, 4, c.name, c.full_name, 0); link(k, 'cat:' + cid); }
+    }
+    const out = {};
+    const inn = {};
+    for (const e of E) { (out[e.s] = out[e.s] || []).push(e.t); (inn[e.t] = inn[e.t] || []).push(e.s); }
+
+    // 排序：前三欄依資料順序，後兩欄依上游平均位置
+    const cols = [0, 1, 2, 3, 4].map((c) => [...N.values()].filter((n) => n.col === c));
+    for (const c of [0, 1, 2]) { cols[c].sort((a, b) => a.ord - b.ord); cols[c].forEach((n, i) => { n.idx = i; }); }
+    for (const c of [3, 4]) {
+      for (const n of cols[c]) n.ord = d3.mean(inn[n.key] || [], (k) => N.get(k).idx) || 0;
+      cols[c].sort((a, b) => a.ord - b.ord);
+      cols[c].forEach((n, i) => { n.idx = i; });
+    }
+
+    // 選取路徑
+    const sel = P().p3 && N.has(P().p3) ? P().p3 : null;
+    const onPath = new Set();
+    const pathEdges = new Set();
+    if (sel) {
+      onPath.add(sel);
+      const walk = (start, adj, dir) => {
+        const stack = [start];
+        while (stack.length) {
+          const k = stack.pop();
+          for (const nx of adj[k] || []) {
+            pathEdges.add(dir === 'down' ? k + '>' + nx : nx + '>' + k);
+            if (!onPath.has(nx)) { onPath.add(nx); stack.push(nx); }
+          }
+        }
+      };
+      walk(sel, out, 'down');
+      walk(sel, inn, 'up');
+    }
+    const choose = (n) => {
+      const patch = { p3: sel === n.key ? null : n.key };
+      if (n.key.startsWith('cat:')) Object.assign(patch, { cat: n.key.slice(4), focus: 'cat' });
+      if (n.key.startsWith('cap:')) Object.assign(patch, { cap: n.key.slice(4), focus: 'cap' });
+      pick(patch);
+    };
+
+    const W = Math.max(300, el.clientWidth);
+    const focus = div('eco-focus');
+    const say = (n) => {
+      if (!n) {
+        focusLines(focus, sel
+          ? [['f1', N.get(sel).label], ['', `路徑經過 ${cols.map((c, i) => `${c.filter((x) => onPath.has(x.key)).length} 個${COLS[i]}`).join('、')}`]]
+          : [['f1', '點任一節點查看推導路徑'], ['', `${cols[0].length} 個症狀、${cols[1].length} 個根因`]]);
+        return;
+      }
+      const lines = [['f1', n.label]];
+      if (n.sub) lines.push(['', (n.col === 1 ? '症狀：' : n.col === 2 ? '流程：' : '') + n.sub]);
+      if (n.key.startsWith('cat:') && !fits(catById[n.key.slice(4)])) lines.push(['', '不符合目前的規模或產業篩選']);
+      focusLines(focus, lines);
+    };
+
+    if (W < 640) {
+      // 窄版：由上而下列出路徑上的節點
+      const stack = div('eco-stack');
+      el.replaceChildren(focus, stack);
+      say(null);
+      cols.forEach((list, ci) => {
+        const shown = sel ? list.filter((n) => onPath.has(n.key)) : ci === 0 ? list : [];
+        if (!shown.length) return;
+        const box = div('');
+        const h = document.createElement('h3');
+        h.textContent = COLS[ci];
+        const chips = div('eco-chips');
+        for (const n of shown) {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'eco-chip' + (n.key === sel ? ' on' : '') + (n.key.startsWith('cat:') && !fits(catById[n.key.slice(4)]) ? ' dim' : '');
+          b.textContent = n.label;
+          b.addEventListener('click', () => choose(n));
+          chips.append(b);
+        }
+        box.append(h, chips);
+        stack.append(box);
+      });
+      return;
+    }
+
+    const fs = 12;
+    const rowH = 19;
+    const head = 26;
+    const frac = [0.2, 0.25, 0.18, 0.19, 0.18];
+    const colX = [];
+    let acc = 0;
+    for (const f of frac) { colX.push(acc); acc += f * W; }
+    const colW = frac.map((f) => f * W);
+    const maxN = Math.max(...cols.map((c) => c.length));
+    const H = head + maxN * rowH + 8;
+    for (const list of cols) {
+      const off = ((maxN - list.length) * rowH) / 2;
+      for (const n of list) { n.x = colX[n.col] + 6; n.y = head + off + n.idx * rowH + rowH / 2; }
+    }
+
+    const svg = d3.create('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`);
+    el.replaceChildren(focus, svg.node());
+    say(null);
+
+    svg.append('g').selectAll('text').data(COLS).join('text')
+      .attr('x', (d, i) => colX[i] + 2).attr('y', 14)
+      .style('font-size', fs + 'px').style('font-weight', 600).style('fill', 'var(--color-fg-muted)')
+      .text((d) => d);
+
+    const gE = svg.append('g').attr('fill', 'none');
+    const gN = svg.append('g');
+    const nodeG = gN.selectAll('g').data([...N.values()]).join('g').attr('class', 'eco-hit');
+    nodeG.append('circle').attr('cx', (n) => n.x).attr('cy', (n) => n.y).attr('r', 4)
+      .style('fill', (n) => (n.col === 4 ? colorOf(catById[n.key.slice(4)].domain_order) : 'var(--color-fg-muted)'));
+    const texts = nodeG.append('text').attr('x', (n) => n.x + 9).attr('y', (n) => n.y + 4).style('font-size', fs + 'px').text((n) => n.label);
+    texts.each(function (n) { fitText(this, colW[n.col] - 22); n.endX = n.x + 9 + this.getComputedTextLength() + 4; });
+
+    const edges = gE.selectAll('path').data(E).join('path')
+      .attr('d', (e) => {
+        const a = N.get(e.s);
+        const b = N.get(e.t);
+        const x0 = Math.min(a.endX, colX[b.col] - 4);
+        const x1 = b.x - 5;
+        const mx = (x0 + x1) / 2;
+        return `M${x0},${a.y} C${mx},${a.y} ${mx},${b.y} ${x1},${b.y}`;
+      })
+      .attr('stroke-width', (e) => (pathEdges.has(e.s + '>' + e.t) ? 1.6 : 1))
+      .style('stroke', (e) => (pathEdges.has(e.s + '>' + e.t) ? dash.colors[0] : 'var(--cds-chart-muted)'))
+      .style('stroke-opacity', (e) => (sel ? (pathEdges.has(e.s + '>' + e.t) ? 0.85 : 0.04) : 0.14));
+
+    const fitNode = (n) => !n.key.startsWith('cat:') || fits(catById[n.key.slice(4)]);
+    nodeG.style('opacity', (n) => (sel && !onPath.has(n.key) ? 0.22 : fitNode(n) ? 1 : 0.4));
+    texts
+      .style('fill', (n) => (sel && onPath.has(n.key) ? 'var(--color-fg)' : sel ? 'var(--color-fg-muted)' : 'var(--color-fg)'))
+      .style('font-weight', (n) => (n.key === sel ? 700 : 400));
+    nodeG
+      .on('pointerenter', (event, n) => say(n))
+      .on('pointerleave', () => say(null))
+      .on('click', (event, n) => choose(n));
+    edges.raise();
+    gN.raise();
+  });
+
+  // ---------- V4 主檔與資料流 ----------
+  dash.draw('obj-select', (sel) => {
+    const d = dash.data('master_roles');
+    const objs = d.status === 'ok' ? [...new Set(d.data.map((r) => r.object))] : [];
+    sel.replaceChildren(new Option('全部資料物件', ''), ...objs.map((o) => new Option(o, o)));
+    sel.value = P().obj && objs.includes(P().obj) ? P().obj : '';
+    sel.onchange = () => pick(sel.value ? { obj: sel.value, cap: sel.value, focus: 'cap' } : { obj: null });
+  });
+
+  dash.draw('flows', (el) => {
+    if (!guard(el, ['flows', 'master_roles', 'categories'])) return;
+    const fl = dash.data('flows').data;
+    const mr = dash.data('master_roles').data;
+    const cats = dash.data('categories').data;
+    const catById = Object.fromEntries(cats.map((c) => [c.id, c]));
+    const p = P();
+    const obj = p.obj || null;
+    const selC = p.cat && catById[p.cat] ? p.cat : null;
+    const involved = new Set([...fl.flatMap((f) => [f.source, f.target]), ...mr.map((r) => r.category)]);
+    const nodes = cats.filter((c) => involved.has(c.id)).map((c) => ({ ...c, domain_order: Number(c.domain_order), order: Number(c.order), fit: fits(c) }))
+      .sort((a, b) => a.domain_order - b.domain_order || a.order - b.order);
+    const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
+
+    const roles = obj ? mr.filter((r) => r.object === obj) : [];
+    const roleOf = Object.fromEntries(roles.map((r) => [r.category, r]));
+    const cands = roles.filter((r) => r.role === '主檔候選' && fits(catById[r.category])).sort((a, b) => Number(a.priority) - Number(b.priority));
+    const master = cands[0] ? cands[0].category : null;
+
+    const W = Math.max(300, el.clientWidth);
+    const fs = W < 640 ? 11 : 12;
+    const focus = div('eco-focus');
+    const svg = d3.create('svg');
+    el.replaceChildren(focus, svg.node());
+    const probe = svg.append('g');
+    const lw = Math.max(...nodes.map((n) => probe.append('text').style('font-size', fs + 'px').style('font-weight', 700).text(n.name).node().getComputedTextLength()));
+    probe.remove();
+    const size = Math.min(W, 680);
+    const R = Math.max(90, size / 2 - lw - 22);
+    const S = 2 * (R + lw + 22);
+    const cx = S / 2;
+    const cy = S / 2;
+    svg.attr('width', '100%').attr('viewBox', `${(S - W) / 2 > 0 ? 0 : (S - W) / 2} 0 ${Math.max(S, W)} ${S}`);
+    nodes.forEach((n, i) => {
+      n.a = (2 * Math.PI * i) / nodes.length - Math.PI / 2;
+      n.x = cx + R * Math.cos(n.a);
+      n.y = cy + R * Math.sin(n.a);
+    });
+
+    const defs = svg.append('defs');
+    const marker = (id, color) => defs.append('marker').attr('id', id).attr('viewBox', '0 0 10 10').attr('refX', 9).attr('refY', 5)
+      .attr('markerWidth', 6).attr('markerHeight', 6).attr('orient', 'auto-start-reverse')
+      .append('path').attr('d', 'M0,0 L10,5 L0,10 z').style('fill', color);
+    marker('eco-arr-m', 'var(--cds-chart-muted)');
+    marker('eco-arr-o', dash.colors[0]);
+    marker('eco-arr-i', dash.colors[1]);
+
+    const shown = fl.filter((f) => byId[f.source] && byId[f.target] && (!obj || f.object === obj));
+    const pairCount = {};
+    const edges = shown.map((f) => {
+      const k = [f.source, f.target].sort().join('|');
+      pairCount[k] = (pairCount[k] || 0) + 1;
+      return { ...f, k, slot: pairCount[k] - 1 };
+    });
+    const dashOf = (t) => (t === '批次' ? '6 4' : t === '日結' ? '1.5 4' : null);
+    const pathOf = (e) => {
+      const a = byId[e.source];
+      const b = byId[e.target];
+      const mx = (a.x + b.x) / 2;
+      const my = (a.y + b.y) / 2;
+      const px = cx + (mx - cx) * 0.35;
+      const py = cy + (my - cy) * 0.35;
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      const len = Math.hypot(dx, dy) || 1;
+      const off = (e.slot - (pairCount[e.k] - 1) / 2) * 14 * (e.source < e.target ? 1 : -1);
+      const qx = px - (dy / len) * off;
+      const qy = py + (dx / len) * off;
+      const ux = b.x - qx;
+      const uy = b.y - qy;
+      const ul = Math.hypot(ux, uy) || 1;
+      const ex = b.x - (ux / ul) * 9;
+      const ey = b.y - (uy / ul) * 9;
+      return `M${a.x},${a.y} Q${qx},${qy} ${ex},${ey}`;
+    };
+    const state = (e) => (!selC ? 'base' : e.source === selC ? 'out' : e.target === selC ? 'in' : 'off');
+    const gE = svg.append('g').attr('fill', 'none');
+    const vis = gE.selectAll('path.v').data(edges).join('path').attr('class', 'v')
+      .attr('d', pathOf)
+      .attr('stroke-width', (e) => (state(e) === 'out' || state(e) === 'in' || obj ? 1.8 : 1.2))
+      .attr('stroke-dasharray', (e) => dashOf(e.timing))
+      .attr('stroke-linecap', 'round')
+      .style('stroke', (e) => (state(e) === 'out' ? dash.colors[0] : state(e) === 'in' ? dash.colors[1] : 'var(--cds-chart-muted)'))
+      .style('stroke-opacity', (e) => (state(e) === 'off' ? 0.06 : state(e) === 'base' ? (obj ? 0.9 : 0.45) : 0.9))
+      .attr('marker-end', (e) => (state(e) === 'out' ? 'url(#eco-arr-o)' : state(e) === 'in' ? 'url(#eco-arr-i)' : 'url(#eco-arr-m)'));
+    gE.selectAll('path.h').data(edges).join('path').attr('class', 'h eco-hit')
+      .attr('d', pathOf).attr('stroke-width', 9).style('stroke', 'transparent')
+      .on('pointerenter', (event, e) => focusLines(focus, [['f1', `${byId[e.source].name} → ${byId[e.target].name}`], ['', `${e.object}・${e.timing}`]]))
+      .on('pointerleave', () => sayBase());
+
+    const gN = svg.append('g');
+    const ng = gN.selectAll('g').data(nodes).join('g').attr('class', 'eco-hit');
+    const nodeOpacity = (n) => {
+      if (obj) return roleOf[n.id] ? (n.fit ? 1 : 0.35) : 0.15;
+      if (selC) {
+        const linked = edges.some((e) => (e.source === selC && e.target === n.id) || (e.target === selC && e.source === n.id));
+        return n.id === selC || linked ? (n.fit ? 1 : 0.35) : 0.2;
+      }
+      return n.fit ? 1 : 0.35;
+    };
+    ng.style('opacity', nodeOpacity);
+    ng.append('circle').attr('cx', (n) => n.x).attr('cy', (n) => n.y)
+      .attr('r', (n) => {
+        if (!obj) return n.id === selC ? 7 : 5.5;
+        const r = roleOf[n.id];
+        if (!r) return 4;
+        if (n.id === master) return 8;
+        return r.role === '主檔候選' ? 6.5 : 5;
+      })
+      .style('fill', (n) => {
+        const r = roleOf[n.id];
+        if (obj && r && r.role === '引用') return 'var(--color-panel)';
+        if (obj && r && r.role === '主檔候選' && n.id !== master) return 'var(--color-panel)';
+        return colorOf(n.domain_order);
+      })
+      .style('stroke', (n) => (n.id === selC || (obj && n.id === master) ? 'var(--color-fg)' : colorOf(n.domain_order)))
+      .style('stroke-width', (n) => (n.id === selC || (obj && n.id === master) ? 2.5 : 1.5));
+    ng.append('text')
+      .attr('transform', (n) => {
+        const deg = (n.a * 180) / Math.PI;
+        const left = Math.cos(n.a) < -1e-6;
+        return `translate(${n.x},${n.y}) rotate(${left ? deg + 180 : deg}) translate(${left ? -12 : 12},0)`;
+      })
+      .attr('text-anchor', (n) => (Math.cos(n.a) < -1e-6 ? 'end' : 'start'))
+      .attr('dy', '0.35em')
+      .style('font-size', fs + 'px')
+      .style('font-weight', (n) => (n.id === selC || (obj && n.id === master) ? 700 : 400))
+      .style('fill', 'var(--color-fg)')
+      .text((n) => n.name);
+    ng.on('pointerenter', (event, n) => {
+      const o = edges.filter((e) => e.source === n.id).length;
+      const i = edges.filter((e) => e.target === n.id).length;
+      const r = roleOf[n.id];
+      focusLines(focus, [['f1', `${n.name}｜${n.full_name}`], ['', `送出 ${o} 條、接收 ${i} 條資料流${r ? `・${obj}：${n.id === master ? '生效主檔' : r.role}` : ''}${n.fit ? '' : '・不符合目前篩選'}`]]);
+    })
+      .on('pointerleave', () => sayBase())
+      .on('click', (event, n) => selCat(selC === n.id ? null : n.id));
+
+    const sayBase = () => {
+      if (obj) {
+        const mirrors = roles.filter((r) => r.role === '鏡像' && fits(catById[r.category])).length;
+        const refs = roles.filter((r) => r.role === '引用' && fits(catById[r.category])).length;
+        const note = roles.find((r) => r.note) ? roles.find((r) => r.note).note : '';
+        focusLines(focus, [
+          ['f1', obj],
+          ['', master ? `依目前篩選，主檔為 ${catById[master].name}（${catById[master].full_name}）；鏡像 ${mirrors} 個、引用 ${refs} 個系統；相關資料流 ${edges.length} 條` : '依目前篩選，沒有可當主檔的系統'],
+          ['', note],
+        ]);
+      } else if (selC) {
+        focusLines(focus, [['f1', `${catById[selC].name}｜${catById[selC].full_name}`], ['', `送出 ${edges.filter((e) => e.source === selC).length} 條、接收 ${edges.filter((e) => e.target === selC).length} 條資料流`]]);
+      } else {
+        focusLines(focus, [['f1', '點選系統或選擇資料物件'], ['', `${nodes.length} 個系統類別之間有 ${edges.length} 條資料流`]]);
+      }
+    };
+    sayBase();
+  });
+
+  dash.draw('anomalies', (el) => {
+    if (!guard(el, ['master_roles', 'categories'])) return;
+    const list = anomalyList() || [];
+    const cats = Object.fromEntries(dash.data('categories').data.map((c) => [c.id, c]));
+    el.replaceChildren(...list.map((a) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'eco-anom-item';
+      const t = document.createElement('b');
+      t.textContent = a.object;
+      const s = document.createElement('span');
+      s.textContent = a.kind === 'none'
+        ? `沒有可當主檔的系統；持有者：${a.holders.map((h) => cats[h].name).join('、')}`
+        : `主檔候選 ${a.holders.length} 個（${a.holders.map((h) => cats[h].name).join(' > ')}）：${a.note}`;
+      b.append(t, s);
+      b.addEventListener('click', () => pick({ obj: a.object, cap: a.object, focus: 'cap' }));
+      return b;
+    }));
+  });
+
+  // ---------- V5 流程泳道 ----------
+  dash.draw('proc-select', (sel) => {
+    const d = dash.data('processes');
+    const procs = d.status === 'ok' ? [...new Map(d.data.map((r) => [r.process, r.process_name])).entries()] : [];
+    sel.replaceChildren(...procs.map(([id, name]) => new Option(name, id)));
+    sel.value = P().proc && procs.some(([id]) => id === P().proc) ? P().proc : (procs[0] ? procs[0][0] : '');
+    sel.onchange = () => pick({ proc: sel.value });
+  });
+
+  dash.draw('lanes', (el) => {
+    if (!guard(el, ['processes', 'memberships', 'capabilities', 'categories', 'compliance'])) return;
+    const pr = dash.data('processes').data;
+    const mem = dash.data('memberships').data;
+    const type = Object.fromEntries(dash.data('capabilities').data.map((c) => [c.capability, c.type]));
+    const cats = dash.data('categories').data;
+    const law = dash.data('compliance').data;
+    const catById = Object.fromEntries(cats.map((c) => [c.id, c]));
+    const procIds = [...new Set(pr.map((r) => r.process))];
+    const proc = procIds.includes(P().proc) ? P().proc : procIds[0];
+    const steps = pr.filter((s) => s.process === proc).sort((a, b) => Number(a.step_order) - Number(b.step_order));
+    const holders = {};
+    for (const m of mem) (holders[m.capability] = holders[m.capability] || []).push(m.category);
+    const cand = steps.map((s) => new Set(String(s.capabilities).split(',').filter((c) => type[c] !== MECH).flatMap((c) => holders[c] || [])));
+    const laneIds = [];
+    for (const s of steps) if (!laneIds.includes(s.typical_system)) laneIds.push(s.typical_system);
+    const extra = [...new Set(cand.flatMap((c) => [...c]))].filter((id) => !laneIds.includes(id))
+      .sort((a, b) => Number(catById[a].domain_order) - Number(catById[b].domain_order) || Number(catById[a].order) - Number(catById[b].order));
+    const lanes = [...laneIds, ...extra];
+    const lawsOf = steps.map((s) => law.filter((l) => String(l.steps).split(',').includes(s.step_id)));
+    const breaks = [];
+    for (let i = 0; i + 1 < steps.length; i += 1) if (steps[i].typical_system !== steps[i + 1].typical_system) breaks.push(i);
+
+    const focus = div('eco-focus');
+    const svg = d3.create('svg');
+    const lawBox = div('eco-laws');
+    el.replaceChildren(focus, svg.node(), lawBox);
+    const fs = 12;
+    const probe = svg.append('g');
+    const labelW = Math.max(...lanes.map((id) => probe.append('text').style('font-size', fs + 'px').style('font-weight', 700).text(catById[id].name).node().getComputedTextLength())) + 16;
+    probe.remove();
+    const avail = Math.max(300, el.clientWidth);
+    const colW = Math.max(80, (avail - labelW) / steps.length);
+    const Wn = labelW + colW * steps.length;
+    const lawH = 22;
+    const headH = 44;
+    const laneH = 30;
+    const top = lawH + headH;
+    const Hn = top + lanes.length * laneH + 6;
+    if (Wn <= avail + 1) svg.attr('width', '100%').attr('viewBox', `0 0 ${Wn} ${Hn}`);
+    else svg.attr('width', Wn).attr('height', Hn).attr('viewBox', `0 0 ${Wn} ${Hn}`);
+    const colCx = (i) => labelW + colW * (i + 0.5);
+    const laneCy = (id) => top + lanes.indexOf(id) * laneH + laneH / 2;
+    const selC = P().cat;
+
+    // 泳道底與名稱
+    const gL = svg.append('g');
+    lanes.forEach((id, i) => {
+      const c = catById[id];
+      const fit = fits(c);
+      gL.append('rect').attr('x', 0).attr('y', top + i * laneH).attr('width', Wn).attr('height', laneH)
+        .style('fill', id === selC ? 'var(--color-fg)' : 'var(--color-bg)').style('fill-opacity', id === selC ? 0.08 : i % 2 ? 0.0 : 0.6);
+      gL.append('text').attr('x', 0).attr('y', top + i * laneH + laneH / 2 + 4)
+        .style('font-size', fs + 'px')
+        .style('font-weight', laneIds.includes(id) ? 700 : 400)
+        .style('fill', fit ? 'var(--color-fg)' : 'var(--color-fg-muted)')
+        .style('opacity', fit ? 1 : 0.6)
+        .attr('class', 'eco-hit')
+        .text(c.name)
+        .on('pointerenter', () => focusLines(focus, [['f1', `${c.name}｜${c.full_name}`], ['', `${laneIds.includes(id) ? '典型承接系統' : '也具備相關能力'}${fit ? '' : '・不符合目前篩選'}`]]))
+        .on('pointerleave', () => sayBase())
+        .on('click', () => selCat(selC === id ? null : id));
+    });
+
+    // 步驟標題與法遵標記
+    const gH = svg.append('g');
+    const per = Math.max(3, Math.floor((colW - 8) / fs));
+    steps.forEach((s, i) => {
+      const x = colCx(i);
+      const name = s.step_name;
+      const l1 = name.slice(0, per);
+      const l2 = name.length > per ? name.slice(per, per * 2) + (name.length > per * 2 ? '…' : '') : '';
+      const t = gH.append('text').attr('x', x).attr('y', lawH + 16).attr('text-anchor', 'middle').style('font-size', fs + 'px').style('fill', 'var(--color-fg)').attr('class', 'eco-hit');
+      t.append('tspan').attr('x', x).attr('dy', 0).text(l1);
+      if (l2) t.append('tspan').attr('x', x).attr('dy', 15).text(l2);
+      t.on('pointerenter', () => focusLines(focus, [['f1', `${s.step_order}. ${s.step_name}`], ['', `需要的能力：${String(s.capabilities).split(',').join('、')}`], ['', `典型承接：${catById[s.typical_system].name}`]]))
+        .on('pointerleave', () => sayBase());
+      if (lawsOf[i].length) {
+        const g = gH.append('g').attr('class', 'eco-hit');
+        g.append('rect').attr('x', x - 9).attr('y', 2).attr('width', 18).attr('height', 15).attr('rx', 3).style('fill', 'none').style('stroke', 'var(--color-warn)');
+        g.append('text').attr('x', x).attr('y', 13.5).attr('text-anchor', 'middle').style('font-size', '10.5px').style('fill', 'var(--color-warn)').text(String(lawsOf[i].length));
+        g.on('pointerenter', () => focusLines(focus, [['f1', `${s.step_name}：法遵項目`], ...lawsOf[i].map((l) => ['', l.name])]))
+          .on('pointerleave', () => sayBase());
+      }
+      gH.append('line').attr('x1', labelW + colW * i).attr('x2', labelW + colW * i).attr('y1', top).attr('y2', Hn - 6).style('stroke', 'var(--cds-chart-grid)');
+    });
+
+    // 典型路徑線
+    const pts = steps.map((s, i) => [colCx(i), laneCy(s.typical_system)]);
+    svg.append('path').attr('d', d3.line()(pts)).attr('fill', 'none')
+      .style('stroke', 'var(--color-fg-muted)').attr('stroke-width', 1.5).style('stroke-opacity', 0.6);
+
+    // 格點
+    const gC = svg.append('g');
+    steps.forEach((s, i) => {
+      for (const id of lanes) {
+        const typical = s.typical_system === id;
+        const isCand = cand[i].has(id);
+        if (!typical && !isCand) continue;
+        const fit = fits(catById[id]);
+        gC.append('circle').attr('cx', colCx(i)).attr('cy', laneCy(id)).attr('r', typical ? 6.5 : 4.5)
+          .style('fill', typical ? colorOf(catById[id].domain_order) : 'var(--color-panel)')
+          .style('stroke', colorOf(catById[id].domain_order)).style('stroke-width', 1.5)
+          .style('opacity', fit ? 1 : 0.3);
+      }
+    });
+
+    // 斷點
+    const gB = svg.append('g');
+    for (const i of breaks) {
+      const [x0, y0] = pts[i];
+      const [x1, y1] = pts[i + 1];
+      const mx = (x0 + x1) / 2;
+      const my = (y0 + y1) / 2;
+      const g = gB.append('g').attr('class', 'eco-hit');
+      g.append('rect').attr('x', mx - 5).attr('y', my - 5).attr('width', 10).attr('height', 10).attr('transform', `rotate(45 ${mx} ${my})`)
+        .style('fill', 'var(--color-warn)').style('stroke', 'var(--color-panel)').style('stroke-width', 1.5);
+      g.on('pointerenter', () => focusLines(focus, [['f1', '斷點'], ['', `${steps[i].step_name}（${catById[steps[i].typical_system].name}）→ ${steps[i + 1].step_name}（${catById[steps[i + 1].typical_system].name}）`], ['', '需要系統介接，或靠人工轉檔']]))
+        .on('pointerleave', () => sayBase());
+    }
+
+    const pname = steps[0] ? steps[0].process_name : '';
+    const sayBase = () => focusLines(focus, [['f1', pname], ['', `${steps.length} 個步驟，典型分工下有 ${breaks.length} 個斷點，涉及 ${laneIds.length} 個典型承接系統`]]);
+    sayBase();
+
+    const used = law.filter((l) => steps.some((s) => String(l.steps).split(',').includes(s.step_id)));
+    lawBox.replaceChildren(...used.map((l) => {
+      const d = document.createElement('div');
+      const b = document.createElement('b');
+      b.textContent = l.name;
+      const at = steps.filter((s) => String(l.steps).split(',').includes(s.step_id)).map((s) => s.step_name).join('、');
+      d.append(b, document.createTextNode(`（${at}）：${l.description}`));
+      return d;
+    }));
+  });
+
+  // ---------- 說明面板 ----------
+  dash.draw('detail', (el) => {
+    const p = P();
+    const target = p.focus === 'cat' ? p.cat : p.focus === 'cap' ? p.cap : null;
+    if (!target) { el.replaceChildren(); return; }
+    if (!guard(el, ['categories', 'capabilities', 'memberships', 'master_roles', 'compliance'])) return;
+    const cats = dash.data('categories').data;
+    const caps = dash.data('capabilities').data;
+    const mem = dash.data('memberships').data;
+    const mr = dash.data('master_roles').data;
+    const law = dash.data('compliance').data;
+    const catById = Object.fromEntries(cats.map((c) => [c.id, c]));
+    const capType = Object.fromEntries(caps.map((c) => [c.capability, c.type]));
+    const parts = [];
+    const dl = (pairs) => {
+      const d = document.createElement('dl');
+      for (const [k, v] of pairs) {
+        const dt = document.createElement('dt');
+        dt.textContent = k;
+        const dd = document.createElement('dd');
+        dd.textContent = v;
+        d.append(dt, dd);
+      }
+      return d;
+    };
+    const chipRow = (title, items) => {
+      const box = div('');
+      const h = document.createElement('h3');
+      h.textContent = title;
+      const chips = div('eco-chips');
+      for (const [label, fn, dim] of items) {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'eco-chip' + (dim ? ' dim' : '');
+        b.textContent = label;
+        b.addEventListener('click', fn);
+        chips.append(b);
+      }
+      box.append(h, chips);
+      return box;
+    };
+
+    if (p.focus === 'cat') {
+      const c = catById[target];
+      if (!c) { el.replaceChildren(); return; }
+      parts.push(div('d-name', `${c.name}｜${c.full_name}`));
+      parts.push(div('', c.definition));
+      if (!fits(c)) parts.push(div('d-warn', '不符合目前的規模或產業篩選'));
+      parts.push(dl([
+        ['所屬領域', c.domain],
+        ['適用規模', `${SIZE_TXT[Number(c.size_min)] || '—'}以上`],
+        ['適用產業', c.industries],
+        ['導入時機', c.trigger],
+        ['導入複雜度', LEVEL_TXT[Number(c.complexity)] || '—'],
+        ['判斷依據', `${c.basis}（信心：${c.confidence}）`],
+      ]));
+      const mine = mem.filter((m) => m.category === c.id);
+      for (const t of TYPES) {
+        const items = mine.filter((m) => capType[m.capability] === t);
+        if (items.length) parts.push(chipRow(`${t}（${items.length}）`, items.map((m) => [m.capability + (m.confidence === '中' ? '＊' : ''), () => selCap(m.capability)])));
+      }
+      if (mine.some((m) => m.confidence === '中')) parts.push(div('', '＊常見但依產品而異'));
+      const laws = law.filter((l) => String(l.categories).split(',').includes(c.id));
+      if (laws.length) parts.push(dl(laws.map((l) => ['法遵', `${l.name}：${l.description}`])));
+    } else {
+      const k = caps.find((x) => x.capability === target);
+      if (!k) { el.replaceChildren(); return; }
+      parts.push(div('d-name', k.capability));
+      parts.push(div('', k.definition));
+      parts.push(dl([['類型', k.type]]));
+      const holders = mem.filter((m) => m.capability === k.capability);
+      parts.push(chipRow(`具備此能力的系統（${holders.length}）`, holders.map((m) => [catById[m.category].name + (m.confidence === '中' ? '＊' : ''), () => selCat(m.category), !fits(catById[m.category])])));
+      if (k.type === OBJ) {
+        const rs = mr.filter((r) => r.object === k.capability);
+        const cands = rs.filter((r) => r.role === '主檔候選').sort((a, b) => Number(a.priority) - Number(b.priority));
+        const live = cands.filter((r) => fits(catById[r.category]));
+        const name = (r) => catById[r.category].name;
+        const rowsOut = [
+          ['主檔候選', cands.map(name).join(' > ') || '—'],
+          ['依篩選生效', live[0] ? name(live[0]) : '沒有可當主檔的系統'],
+          ['鏡像', rs.filter((r) => r.role === '鏡像').map(name).join('、') || '—'],
+          ['引用', rs.filter((r) => r.role === '引用').map(name).join('、') || '—'],
+        ];
+        const note = rs.find((r) => r.note);
+        if (note) rowsOut.push(['注意', note.note]);
+        if (rs[0]) rowsOut.push(['判斷依據', `${rs[0].basis}（信心：${rs[0].confidence}）`]);
+        parts.push(dl(rowsOut));
+      }
+    }
+    el.replaceChildren(...parts);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,682 @@
+[
+{
+"object": "客戶／會員主檔",
+"category": "MDM",
+"role": "主檔候選",
+"priority": 1,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "是",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "客戶／會員主檔",
+"category": "CRM",
+"role": "主檔候選",
+"priority": 2,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "是",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "客戶／會員主檔",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 3,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "是",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "客戶／會員主檔",
+"category": "MA",
+"role": "鏡像",
+"priority": null,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "客戶／會員主檔",
+"category": "OMS",
+"role": "鏡像",
+"priority": null,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "客戶／會員主檔",
+"category": "POS",
+"role": "鏡像",
+"priority": null,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "客戶／會員主檔",
+"category": "HD",
+"role": "引用",
+"priority": null,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "否",
+"basis": "只存識別碼或少量欄位",
+"confidence": "中"
+},
+{
+"object": "客戶／會員主檔",
+"category": "FSM",
+"role": "引用",
+"priority": null,
+"note": "沒有主資料管理時，CRM 與 ERP 常同時自認為主檔：CRM 管潛在客戶與往來，ERP 管交易與帳款",
+"contested": "否",
+"basis": "只存識別碼或少量欄位",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "MDM",
+"role": "主檔候選",
+"priority": 1,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "PLM",
+"role": "主檔候選",
+"priority": 2,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 3,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "PIM",
+"role": "鏡像",
+"priority": null,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "OMS",
+"role": "鏡像",
+"priority": null,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "POS",
+"role": "鏡像",
+"priority": null,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "WMS",
+"role": "鏡像",
+"priority": null,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "MES",
+"role": "鏡像",
+"priority": null,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "料號主檔",
+"category": "APS",
+"role": "鏡像",
+"priority": null,
+"note": "有 PLM 時，設計階段的料號由 PLM 建立，發行後才進 ERP",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "供應商主檔",
+"category": "MDM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "供應商主檔",
+"category": "SRM",
+"role": "主檔候選",
+"priority": 2,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "供應商主檔",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 3,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "供應商主檔",
+"category": "QMS",
+"role": "引用",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "只存識別碼或少量欄位",
+"confidence": "中"
+},
+{
+"object": "員工主檔與組織",
+"category": "HRM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "員工主檔與組織",
+"category": "EIP",
+"role": "鏡像",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "員工主檔與組織",
+"category": "BPM",
+"role": "鏡像",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "庫存數量",
+"category": "WMS",
+"role": "主檔候選",
+"priority": 1,
+"note": "有 WMS 時，實體數量以 WMS 為準，ERP 保留庫存金額；兩邊數量差異是常見爭議",
+"contested": "是",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "庫存數量",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 2,
+"note": "有 WMS 時，實體數量以 WMS 為準，ERP 保留庫存金額；兩邊數量差異是常見爭議",
+"contested": "是",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "庫存數量",
+"category": "OMS",
+"role": "鏡像",
+"priority": null,
+"note": "有 WMS 時，實體數量以 WMS 為準，ERP 保留庫存金額；兩邊數量差異是常見爭議",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "庫存數量",
+"category": "POS",
+"role": "鏡像",
+"priority": null,
+"note": "有 WMS 時，實體數量以 WMS 為準，ERP 保留庫存金額；兩邊數量差異是常見爭議",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "銷售訂單",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 1,
+"note": "電商通路由 OMS 起單、B2B 由 ERP 起單；兩種通路並存時主檔依通路而異",
+"contested": "是",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "銷售訂單",
+"category": "OMS",
+"role": "主檔候選",
+"priority": 2,
+"note": "電商通路由 OMS 起單、B2B 由 ERP 起單；兩種通路並存時主檔依通路而異",
+"contested": "是",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "出貨單",
+"category": "WMS",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "出貨單",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 2,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "出貨單",
+"category": "OMS",
+"role": "引用",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "只存識別碼或少量欄位",
+"confidence": "中"
+},
+{
+"object": "出貨單",
+"category": "TMS",
+"role": "引用",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "只存識別碼或少量欄位",
+"confidence": "中"
+},
+{
+"object": "報價單",
+"category": "CPQ",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "報價單",
+"category": "CRM",
+"role": "主檔候選",
+"priority": 2,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "報價單",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 3,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "採購單",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "採購單",
+"category": "SRM",
+"role": "鏡像",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "費用報支單據",
+"category": "EXP",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "費用報支單據",
+"category": "BPM",
+"role": "主檔候選",
+"priority": 2,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "費用報支單據",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 3,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "資產台帳",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 1,
+"note": "財產帳、設備台帳與 IT 資產常分成三套，編號互不對應",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "資產台帳",
+"category": "EAM",
+"role": "鏡像",
+"priority": null,
+"note": "財產帳、設備台帳與 IT 資產常分成三套，編號互不對應",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "資產台帳",
+"category": "ITSM",
+"role": "鏡像",
+"priority": null,
+"note": "財產帳、設備台帳與 IT 資產常分成三套，編號互不對應",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "BOM 物料清單",
+"category": "PLM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "BOM 物料清單",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 2,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "生產工單",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "生產工單",
+"category": "MES",
+"role": "鏡像",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "生產工單",
+"category": "APS",
+"role": "鏡像",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "客訴紀錄",
+"category": "HD",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "客訴紀錄",
+"category": "CRM",
+"role": "主檔候選",
+"priority": 2,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "客訴紀錄",
+"category": "QMS",
+"role": "引用",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "只存識別碼或少量欄位",
+"confidence": "中"
+},
+{
+"object": "會計總帳與傳票",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "應收應付",
+"category": "ERP",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "出勤與請假",
+"category": "HRM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "出勤與請假",
+"category": "EIP",
+"role": "鏡像",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "員工訓練紀錄",
+"category": "HRM",
+"role": "主檔候選",
+"priority": 1,
+"note": "品質認證稽核要求的訓練紀錄，常由 QMS 另存一份",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "員工訓練紀錄",
+"category": "QMS",
+"role": "鏡像",
+"priority": null,
+"note": "品質認證稽核要求的訓練紀錄，常由 QMS 另存一份",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "檢驗與不良紀錄",
+"category": "QMS",
+"role": "主檔候選",
+"priority": 1,
+"note": "製程檢驗多在 MES 記錄，進料與出貨檢驗多在 QMS；兩者都有時常分段為主檔",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "檢驗與不良紀錄",
+"category": "MES",
+"role": "主檔候選",
+"priority": 2,
+"note": "製程檢驗多在 MES 記錄，進料與出貨檢驗多在 QMS；兩者都有時常分段為主檔",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "工程變更",
+"category": "PLM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "工程變更",
+"category": "QMS",
+"role": "鏡像",
+"priority": null,
+"note": "",
+"contested": "否",
+"basis": "保留完整同步副本",
+"confidence": "中"
+},
+{
+"object": "合約條款與到期",
+"category": "CLM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "IT 報修工單",
+"category": "ITSM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "服務派工單",
+"category": "FSM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "客戶裝機資料",
+"category": "FSM",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+},
+{
+"object": "專案工時紀錄",
+"category": "PSA",
+"role": "主檔候選",
+"priority": 1,
+"note": "",
+"contested": "否",
+"basis": "多系統並存時的常見歸屬；priority 越小，越優先成為主檔",
+"confidence": "中"
+}
+]

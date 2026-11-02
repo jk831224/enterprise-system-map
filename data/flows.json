@@ -1,0 +1,470 @@
+[
+{
+"flow_id": "F01",
+"source": "MDM",
+"target": "CRM",
+"object": "客戶／會員主檔",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F02",
+"source": "MDM",
+"target": "ERP",
+"object": "客戶／會員主檔",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F03",
+"source": "CRM",
+"target": "ERP",
+"object": "客戶／會員主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F04",
+"source": "CRM",
+"target": "MA",
+"object": "客戶／會員主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F05",
+"source": "ERP",
+"target": "OMS",
+"object": "客戶／會員主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F06",
+"source": "CRM",
+"target": "HD",
+"object": "客戶／會員主檔",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F07",
+"source": "MDM",
+"target": "ERP",
+"object": "料號主檔",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F08",
+"source": "PLM",
+"target": "ERP",
+"object": "料號主檔",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F09",
+"source": "PLM",
+"target": "ERP",
+"object": "BOM 物料清單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F10",
+"source": "ERP",
+"target": "PIM",
+"object": "料號主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F11",
+"source": "PIM",
+"target": "OMS",
+"object": "料號主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F12",
+"source": "ERP",
+"target": "POS",
+"object": "料號主檔",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F13",
+"source": "ERP",
+"target": "WMS",
+"object": "料號主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F14",
+"source": "ERP",
+"target": "MES",
+"object": "料號主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F15",
+"source": "SRM",
+"target": "ERP",
+"object": "供應商主檔",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F16",
+"source": "ERP",
+"target": "SRM",
+"object": "採購單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F17",
+"source": "QMS",
+"target": "SRM",
+"object": "供應商評鑑",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F18",
+"source": "HRM",
+"target": "EIP",
+"object": "員工主檔與組織",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F19",
+"source": "HRM",
+"target": "BPM",
+"object": "員工主檔與組織",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F20",
+"source": "HRM",
+"target": "ITSM",
+"object": "員工主檔與組織",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F21",
+"source": "EIP",
+"target": "HRM",
+"object": "出勤與請假",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F22",
+"source": "HRM",
+"target": "ERP",
+"object": "會計總帳與傳票",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F23",
+"source": "HRM",
+"target": "ESG",
+"object": "永續人資指標",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F24",
+"source": "CPQ",
+"target": "CRM",
+"object": "報價單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F25",
+"source": "CRM",
+"target": "ERP",
+"object": "銷售訂單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F26",
+"source": "OMS",
+"target": "ERP",
+"object": "銷售訂單",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F27",
+"source": "EDI",
+"target": "ERP",
+"object": "銷售訂單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F28",
+"source": "ERP",
+"target": "WMS",
+"object": "出貨單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F29",
+"source": "WMS",
+"target": "ERP",
+"object": "出貨單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F30",
+"source": "WMS",
+"target": "ERP",
+"object": "庫存數量",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F31",
+"source": "WMS",
+"target": "TMS",
+"object": "出貨單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F32",
+"source": "ERP",
+"target": "EDI",
+"object": "出貨單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F33",
+"source": "ERP",
+"target": "OMS",
+"object": "庫存數量",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F34",
+"source": "POS",
+"target": "ERP",
+"object": "門市收銀",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F35",
+"source": "ERP",
+"target": "APS",
+"object": "銷售訂單",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F36",
+"source": "APS",
+"target": "ERP",
+"object": "生產工單",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F37",
+"source": "ERP",
+"target": "MES",
+"object": "生產工單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F38",
+"source": "MES",
+"target": "ERP",
+"object": "現場報工與良率",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F39",
+"source": "MES",
+"target": "QMS",
+"object": "檢驗與不良紀錄",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F40",
+"source": "PLM",
+"target": "QMS",
+"object": "工程變更",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F41",
+"source": "EAM",
+"target": "ERP",
+"object": "資產台帳",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F42",
+"source": "EXP",
+"target": "ERP",
+"object": "費用報支單據",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F43",
+"source": "ERP",
+"target": "EPM",
+"object": "會計總帳與傳票",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F44",
+"source": "HD",
+"target": "QMS",
+"object": "客訴紀錄",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F45",
+"source": "HD",
+"target": "FSM",
+"object": "服務派工單",
+"timing": "即時",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F46",
+"source": "FSM",
+"target": "ERP",
+"object": "應收應付",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F47",
+"source": "PSA",
+"target": "ERP",
+"object": "專案預算與請款",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F48",
+"source": "CLM",
+"target": "ERP",
+"object": "合約條款與到期",
+"timing": "批次",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F49",
+"source": "ERP",
+"target": "BI",
+"object": "資料倉儲",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F50",
+"source": "CRM",
+"target": "BI",
+"object": "資料倉儲",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F51",
+"source": "MES",
+"target": "BI",
+"object": "資料倉儲",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+},
+{
+"flow_id": "F52",
+"source": "OMS",
+"target": "BI",
+"object": "資料倉儲",
+"timing": "日結",
+"basis": "多系統並存時的常見資料流向與同步時機",
+"confidence": "中"
+}
+]

@@ -1,0 +1,332 @@
+[
+{
+"capability": "客戶／會員主檔",
+"type": "資料物件",
+"definition": "客戶或會員的基本資料與識別。"
+},
+{
+"capability": "料號主檔",
+"type": "資料物件",
+"definition": "商品或物料的編號、規格與單位。"
+},
+{
+"capability": "供應商主檔",
+"type": "資料物件",
+"definition": "供應商的基本資料、交易條件與資格。"
+},
+{
+"capability": "員工主檔與組織",
+"type": "資料物件",
+"definition": "員工基本資料、職位與組織架構。"
+},
+{
+"capability": "庫存數量",
+"type": "資料物件",
+"definition": "各倉別、儲位的在庫與可用數量。"
+},
+{
+"capability": "銷售訂單",
+"type": "資料物件",
+"definition": "客戶確認購買的訂單。"
+},
+{
+"capability": "出貨單",
+"type": "資料物件",
+"definition": "實際出貨的品項、數量與對象。"
+},
+{
+"capability": "報價單",
+"type": "資料物件",
+"definition": "對客戶提出的價格與條件。"
+},
+{
+"capability": "採購單",
+"type": "資料物件",
+"definition": "向供應商確認採購的單據。"
+},
+{
+"capability": "費用報支單據",
+"type": "資料物件",
+"definition": "員工代墊或預支費用的申請與憑證。"
+},
+{
+"capability": "資產台帳",
+"type": "資料物件",
+"definition": "固定資產、設備或 IT 資產的登錄資料。"
+},
+{
+"capability": "BOM 物料清單",
+"type": "資料物件",
+"definition": "產品由哪些物料、各多少數量組成。"
+},
+{
+"capability": "生產工單",
+"type": "資料物件",
+"definition": "指示生產什麼、多少、何時完成的單據。"
+},
+{
+"capability": "客訴紀錄",
+"type": "資料物件",
+"definition": "客戶抱怨或問題的受理與處理紀錄。"
+},
+{
+"capability": "會計總帳與傳票",
+"type": "資料物件",
+"definition": "會計分錄與總分類帳。"
+},
+{
+"capability": "應收應付",
+"type": "資料物件",
+"definition": "對客戶的應收帳款與對供應商的應付帳款。"
+},
+{
+"capability": "出勤與請假",
+"type": "資料物件",
+"definition": "員工打卡、加班與請假紀錄。"
+},
+{
+"capability": "員工訓練紀錄",
+"type": "資料物件",
+"definition": "員工受訓課程與資格。"
+},
+{
+"capability": "檢驗與不良紀錄",
+"type": "資料物件",
+"definition": "進料、製程或出貨檢驗結果與不良品紀錄。"
+},
+{
+"capability": "工程變更",
+"type": "資料物件",
+"definition": "產品設計或物料清單的變更申請與發行。"
+},
+{
+"capability": "合約條款與到期",
+"type": "資料物件",
+"definition": "合約內容、關鍵條款與到期日。"
+},
+{
+"capability": "IT 報修工單",
+"type": "資料物件",
+"definition": "IT 問題或服務請求的處理單。"
+},
+{
+"capability": "服務派工單",
+"type": "資料物件",
+"definition": "外勤人員到場服務的派工與回報。"
+},
+{
+"capability": "客戶裝機資料",
+"type": "資料物件",
+"definition": "安裝在客戶端的設備序號與服務紀錄。"
+},
+{
+"capability": "專案工時紀錄",
+"type": "資料物件",
+"definition": "員工投入各專案的時數。"
+},
+{
+"capability": "物料需求規劃",
+"type": "領域功能",
+"definition": "依需求與庫存推算何時該買或該生產多少物料。"
+},
+{
+"capability": "成本會計",
+"type": "領域功能",
+"definition": "計算產品、工單或部門的成本。"
+},
+{
+"capability": "預算編列與控管",
+"type": "領域功能",
+"definition": "編列預算並比對實際支出。"
+},
+{
+"capability": "合併報表",
+"type": "領域功能",
+"definition": "多家公司財務報表的合併與沖銷。"
+},
+{
+"capability": "電子發票開立",
+"type": "領域功能",
+"definition": "依規定開立與上傳電子發票。"
+},
+{
+"capability": "稅務申報",
+"type": "領域功能",
+"definition": "營業稅、所得稅等申報資料的產生。"
+},
+{
+"capability": "薪資計算",
+"type": "領域功能",
+"definition": "依出勤、獎金與扣項計算薪資。"
+},
+{
+"capability": "招募",
+"type": "領域功能",
+"definition": "職缺、應徵者與面試流程。"
+},
+{
+"capability": "績效考核",
+"type": "領域功能",
+"definition": "目標設定與考核評分。"
+},
+{
+"capability": "永續人資指標",
+"type": "領域功能",
+"definition": "員工結構、職災、訓練時數等永續揭露所需的人資數據。"
+},
+{
+"capability": "商機管理",
+"type": "領域功能",
+"definition": "追蹤銷售機會的階段與預估金額。"
+},
+{
+"capability": "拜訪與活動紀錄",
+"type": "領域功能",
+"definition": "業務拜訪、通話與會議的紀錄。"
+},
+{
+"capability": "名單分群與 EDM",
+"type": "領域功能",
+"definition": "依條件分群並發送電子報。"
+},
+{
+"capability": "促銷與優惠券",
+"type": "領域功能",
+"definition": "折扣、促銷活動與優惠券規則。"
+},
+{
+"capability": "產品組態與定價規則",
+"type": "領域功能",
+"definition": "可選配產品的組合限制與價格規則。"
+},
+{
+"capability": "商品內容與多通路上架",
+"type": "領域功能",
+"definition": "商品圖文、規格與各通路上架內容。"
+},
+{
+"capability": "門市收銀",
+"type": "領域功能",
+"definition": "門市結帳、找零與交班。"
+},
+{
+"capability": "產能排程",
+"type": "領域功能",
+"definition": "依機台與人力產能排定工單順序。"
+},
+{
+"capability": "現場報工與良率",
+"type": "領域功能",
+"definition": "產線回報完工數量、工時與良率。"
+},
+{
+"capability": "設備保養",
+"type": "領域功能",
+"definition": "設備預防保養排程與維修紀錄。"
+},
+{
+"capability": "儲位與揀貨",
+"type": "領域功能",
+"definition": "儲位配置與揀貨路徑。"
+},
+{
+"capability": "配送與車趟",
+"type": "領域功能",
+"definition": "配送路線、排車與車趟追蹤。"
+},
+{
+"capability": "運費計算",
+"type": "領域功能",
+"definition": "依重量、距離或物流商計算運費。"
+},
+{
+"capability": "供應商評鑑",
+"type": "領域功能",
+"definition": "依交期、品質等指標評分供應商。"
+},
+{
+"capability": "矯正預防措施",
+"type": "領域功能",
+"definition": "品質異常的原因分析與改善追蹤。"
+},
+{
+"capability": "稽核發現追蹤",
+"type": "領域功能",
+"definition": "稽核缺失的登錄與改善追蹤。"
+},
+{
+"capability": "風險與內控測試",
+"type": "領域功能",
+"definition": "風險評估與內部控制測試。"
+},
+{
+"capability": "溫室氣體盤查",
+"type": "領域功能",
+"definition": "排放源盤查與碳排計算。"
+},
+{
+"capability": "專案預算與請款",
+"type": "領域功能",
+"definition": "專案預算控管與依進度請款。"
+},
+{
+"capability": "交易夥伴管理",
+"type": "領域功能",
+"definition": "與客戶、供應商之間的交換格式與對接設定。"
+},
+{
+"capability": "資料倉儲",
+"type": "領域功能",
+"definition": "彙整多系統資料供分析使用。"
+},
+{
+"capability": "資料清洗與比對",
+"type": "通用機制",
+"definition": "找出重複或不一致的資料並合併。"
+},
+{
+"capability": "簽核流程",
+"type": "通用機制",
+"definition": "單據送審、核准與退回的流程機制。"
+},
+{
+"capability": "電子表單",
+"type": "通用機制",
+"definition": "線上填寫與送出的表單。"
+},
+{
+"capability": "知識庫",
+"type": "通用機制",
+"definition": "可搜尋的文章與常見問題。"
+},
+{
+"capability": "文件版本控管",
+"type": "通用機制",
+"definition": "文件的版本、發行與權限。"
+},
+{
+"capability": "公告與行事曆",
+"type": "通用機制",
+"definition": "內部公告與共用行事曆。"
+},
+{
+"capability": "系統介接與同步",
+"type": "通用機制",
+"definition": "系統之間的資料傳遞與同步。"
+},
+{
+"capability": "外部交易文件轉換",
+"type": "通用機制",
+"definition": "把內部單據轉成對方要求的交換格式。"
+},
+{
+"capability": "報表與儀表板",
+"type": "通用機制",
+"definition": "彙總數據並以報表或圖表呈現。"
+},
+{
+"capability": "自訂資料表",
+"type": "通用機制",
+"definition": "由使用者自行定義欄位與資料表。"
+}
+]

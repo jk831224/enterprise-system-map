@@ -1,0 +1,92 @@
+[
+{
+"law_id": "L01",
+"name": "電子發票開立與上傳",
+"description": "影響開票時點、作廢與折讓的處理，以及上傳時限。",
+"steps": "O2C-6",
+"categories": "ERP,POS,OMS",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L02",
+"name": "營業稅申報",
+"description": "銷項與進項憑證需能彙整成申報資料。",
+"steps": "R2R-7",
+"categories": "ERP",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L03",
+"name": "營利事業所得稅與財稅差異",
+"description": "帳務需能區分財務與稅務認列的差異。",
+"steps": "R2R-7,R2R-3",
+"categories": "ERP",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L04",
+"name": "勞保、健保與勞退提繳",
+"description": "到職、異動與離職需連動投保與提繳。",
+"steps": "H2R-2,H2R-4,H2R-8",
+"categories": "HRM",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L05",
+"name": "二代健保補充保費",
+"description": "特定所得類型需另計補充保費。",
+"steps": "H2R-4",
+"categories": "HRM",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L06",
+"name": "勞動基準法工時與加班規定",
+"description": "出勤、加班與休假的計算規則需符合法規。",
+"steps": "H2R-3,H2R-4",
+"categories": "HRM,EIP",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L07",
+"name": "薪資所得扣繳",
+"description": "薪資發放需能產生扣繳資料與憑單。",
+"steps": "H2R-4",
+"categories": "HRM",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L08",
+"name": "個人資料保護法",
+"description": "客戶與會員個資的蒐集、利用與保存需有依據與紀錄。",
+"steps": "O2C-1,I2R-1",
+"categories": "CRM,MA,HD,OMS,POS",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L09",
+"name": "溫室氣體盤查與永續揭露",
+"description": "符合規範的企業需盤查排放並揭露永續資訊。",
+"steps": "",
+"categories": "ESG",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+},
+{
+"law_id": "L10",
+"name": "公開發行公司內部控制",
+"description": "上市櫃公司需建立內控制度並定期自評。",
+"steps": "",
+"categories": "GRC",
+"basis": "依臺灣現行法規通則整理，未逐條查證條文與適用門檻",
+"confidence": "中"
+}
+]

@@ -1,0 +1,818 @@
+[
+{
+"category": "ERP",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "客戶／會員主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "料號主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "供應商主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "庫存數量",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "出貨單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "費用報支單據",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "資產台帳",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "報價單",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "ERP",
+"capability": "銷售訂單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "採購單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "BOM 物料清單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "生產工單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "物料需求規劃",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "成本會計",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "預算編列與控管",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "ERP",
+"capability": "合併報表",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "ERP",
+"capability": "會計總帳與傳票",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "應收應付",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "電子發票開立",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ERP",
+"capability": "稅務申報",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HRM",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HRM",
+"capability": "員工主檔與組織",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HRM",
+"capability": "出勤與請假",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HRM",
+"capability": "員工訓練紀錄",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HRM",
+"capability": "永續人資指標",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "HRM",
+"capability": "薪資計算",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HRM",
+"capability": "招募",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HRM",
+"capability": "績效考核",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "BPM",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "BPM",
+"capability": "員工主檔與組織",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "BPM",
+"capability": "費用報支單據",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "BPM",
+"capability": "電子表單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EIP",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EIP",
+"capability": "員工主檔與組織",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EIP",
+"capability": "知識庫",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "EIP",
+"capability": "電子表單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EIP",
+"capability": "出勤與請假",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "EIP",
+"capability": "公告與行事曆",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "DMS",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "DMS",
+"capability": "文件版本控管",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "PSA",
+"capability": "簽核流程",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "PSA",
+"capability": "專案工時紀錄",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "PSA",
+"capability": "專案預算與請款",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CRM",
+"capability": "客戶／會員主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CRM",
+"capability": "客訴紀錄",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "CRM",
+"capability": "報價單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CRM",
+"capability": "名單分群與 EDM",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CRM",
+"capability": "商機管理",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CRM",
+"capability": "拜訪與活動紀錄",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CPQ",
+"capability": "報價單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CPQ",
+"capability": "產品組態與定價規則",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CPQ",
+"capability": "簽核流程",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "MA",
+"capability": "客戶／會員主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "MA",
+"capability": "促銷與優惠券",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "MA",
+"capability": "名單分群與 EDM",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HD",
+"capability": "客戶／會員主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HD",
+"capability": "客訴紀錄",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "HD",
+"capability": "知識庫",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "FSM",
+"capability": "客戶／會員主檔",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "FSM",
+"capability": "服務派工單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "FSM",
+"capability": "客戶裝機資料",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "OMS",
+"capability": "客戶／會員主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "OMS",
+"capability": "料號主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "OMS",
+"capability": "庫存數量",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "OMS",
+"capability": "出貨單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "OMS",
+"capability": "促銷與優惠券",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "OMS",
+"capability": "銷售訂單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "OMS",
+"capability": "電子發票開立",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "PIM",
+"capability": "料號主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "PIM",
+"capability": "商品內容與多通路上架",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "POS",
+"capability": "客戶／會員主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "POS",
+"capability": "料號主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "POS",
+"capability": "庫存數量",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "POS",
+"capability": "促銷與優惠券",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "POS",
+"capability": "門市收銀",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "POS",
+"capability": "電子發票開立",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "APS",
+"capability": "料號主檔",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "APS",
+"capability": "生產工單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "APS",
+"capability": "物料需求規劃",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "APS",
+"capability": "產能排程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "MES",
+"capability": "料號主檔",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "MES",
+"capability": "生產工單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "MES",
+"capability": "檢驗與不良紀錄",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "MES",
+"capability": "設備保養",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "MES",
+"capability": "現場報工與良率",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "WMS",
+"capability": "料號主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "WMS",
+"capability": "庫存數量",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "WMS",
+"capability": "出貨單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "WMS",
+"capability": "儲位與揀貨",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "TMS",
+"capability": "出貨單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "TMS",
+"capability": "配送與車趟",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "TMS",
+"capability": "運費計算",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "PLM",
+"capability": "料號主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "PLM",
+"capability": "文件版本控管",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "PLM",
+"capability": "BOM 物料清單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "PLM",
+"capability": "工程變更",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "QMS",
+"capability": "供應商主檔",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "QMS",
+"capability": "文件版本控管",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "QMS",
+"capability": "客訴紀錄",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "QMS",
+"capability": "供應商評鑑",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "QMS",
+"capability": "工程變更",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "QMS",
+"capability": "檢驗與不良紀錄",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "QMS",
+"capability": "稽核發現追蹤",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "QMS",
+"capability": "員工訓練紀錄",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "QMS",
+"capability": "矯正預防措施",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EAM",
+"capability": "資產台帳",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EAM",
+"capability": "設備保養",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "SRM",
+"capability": "供應商主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "SRM",
+"capability": "採購單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "SRM",
+"capability": "供應商評鑑",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EXP",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EXP",
+"capability": "費用報支單據",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EPM",
+"capability": "預算編列與控管",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EPM",
+"capability": "合併報表",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CLM",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "CLM",
+"capability": "合約條款與到期",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "GRC",
+"capability": "稽核發現追蹤",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "GRC",
+"capability": "風險與內控測試",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ESG",
+"capability": "永續人資指標",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ESG",
+"capability": "溫室氣體盤查",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "IPAAS",
+"capability": "系統介接與同步",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EDI",
+"capability": "外部交易文件轉換",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "EDI",
+"capability": "交易夥伴管理",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "MDM",
+"capability": "客戶／會員主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "MDM",
+"capability": "料號主檔",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "MDM",
+"capability": "供應商主檔",
+"confidence": "中",
+"basis": "常見但依產品而異"
+},
+{
+"category": "MDM",
+"capability": "資料清洗與比對",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "BI",
+"capability": "報表與儀表板",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "BI",
+"capability": "資料倉儲",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ITSM",
+"capability": "知識庫",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ITSM",
+"capability": "資產台帳",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "ITSM",
+"capability": "IT 報修工單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "LCP",
+"capability": "電子表單",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "LCP",
+"capability": "簽核流程",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+},
+{
+"category": "LCP",
+"capability": "自訂資料表",
+"confidence": "高",
+"basis": "此類單品的核心功能"
+}
+]
